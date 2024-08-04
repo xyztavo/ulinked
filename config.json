@@ -1,0 +1,29 @@
+{
+    "nickname": "ustav",
+    "accentColor": "#4c02b5",
+    "avatarImgSrc": "https://avatars.githubusercontent.com/u/89479041",
+    "buttons": [
+      {
+        "title": "My Pokemon Game",
+        "link": "https://pokedoro-next.vercel.app/"
+      },
+      {
+        "title": "My Projects",
+        "link": "https://uprojects.vercel.app/"
+      },
+      {
+        "title": "Github",
+        "link": "https://github.com/xyztavo"
+      },
+      {
+        "title": "See this project code",
+        "link": "https://github.com/xyztavo/DaisyDevLinks"
+      }
+    ],
+    "githubLink": "https://github.com/xyztavo",
+    "instagramLink": "https://www.instagram.com/luna.gustah/",
+    "linkedInLink": "https://www.linkedin.com/in/gustavo-luna-6a33942aa/",
+    "discordLink": "https://discord.com/users/801073563368947742",
+    "footer": "made with ❤️, ustav"
+  }
+  

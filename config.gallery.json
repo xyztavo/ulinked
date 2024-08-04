@@ -1,0 +1,38 @@
+{
+  "albums": [
+    {
+      "title": "gym💪1",
+      "route": "gym1",
+      "coverImageSrc": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg",
+      "images": [
+        {
+          "title": "1st week",
+          "src": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg"
+        },
+        {
+          "title": "2nd week",
+          "src": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg"
+        },
+        {
+          "title": "2nd week",
+          "src": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg"
+        }
+      ]
+    },
+    {
+      "title": "cars",
+      "route": "cars",
+      "coverImageSrc": "https://blog.pneustore.com.br/wp-content/uploads/2022/09/IMG_2176-1-e1664197556142.jpg",
+      "images": [
+        {
+          "title": "1st week",
+          "src": "https://blog.pneustore.com.br/wp-content/uploads/2022/09/IMG_2176-1-e1664197556142.jpg"
+        },
+        {
+          "title": "1st week",
+          "src": "https://blog.pneustore.com.br/wp-content/uploads/2022/09/IMG_2176-1-e1664197556142.jpg"
+        }
+      ]
+    }
+  ]
+}
