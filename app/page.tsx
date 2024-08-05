@@ -9,6 +9,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
+import { motion } from "framer-motion";
 
 import * as gallery from "../config.gallery.json";
 import * as config from "../config.json";
@@ -41,14 +42,15 @@ export default function Home() {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                My Albuns
+                My Albums
               </ModalHeader>
               <ModalBody className="flex flex-row items-center justify-center flex-wrap">
                 {gallery.albums.map((album, i) => (
-                  <a
+                  <motion.a
                     key={i}
                     className="flex flex-col items-center justify-center"
                     href={album.route}
+                    whileHover={{ scale: 1.3, zIndex: 10 }}
                   >
                     <img
                       alt="album cover"
@@ -58,19 +60,16 @@ export default function Home() {
                     <Button className="w-full rounded-b-lg" radius="none">
                       {album.title}
                     </Button>
-                  </a>
+                  </motion.a>
                 ))}
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
                 <Button
                   className="text-white"
                   color="primary"
                   onPress={onClose}
                 >
-                  Action
+                  Close
                 </Button>
               </ModalFooter>
             </>
