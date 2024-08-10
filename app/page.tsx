@@ -59,7 +59,6 @@ export default function Home() {
             >
               <Tooltip
                 color="primary"
-                showArrow={true}
                 content={
                   <div className="flex flex-col items-center justify-center text-center p-2">
                     <h1 className="text-center">
@@ -69,11 +68,18 @@ export default function Home() {
                       </span>
                     </h1>
                     <div className="text-sm flex flex-col">
-                      <h2>{data.data.activities[0].state}</h2>
-                      <h2>{data.data.activities[0].details}</h2>
+                      <h2>
+                        {data.data.activities[0].state &&
+                          data.data.activities[0].state}
+                      </h2>
+                      <h2>
+                        {data.data.activities[0].details &&
+                          data.data.activities[0].details}
+                      </h2>
                     </div>
                   </div>
                 }
+                showArrow={true}
               >
                 <Avatar
                   isBordered
