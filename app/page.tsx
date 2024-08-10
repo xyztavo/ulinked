@@ -64,7 +64,7 @@ export default function Home() {
                     <h1 className="text-center">
                       Currently on:{" "}
                       <span className="font-bold">
-                        {data.data.activities[0].name}
+                        {data.data.activities[0].name && data.data.activities[0].name}
                       </span>
                     </h1>
                     <div className="text-sm flex flex-col">
