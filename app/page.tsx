@@ -46,7 +46,7 @@ export default function Home() {
   });
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8 mt-2">
+    <div className="flex flex-col items-center justify-center gap-8">
       <div className="flex flex-col items-center gap-4">
         {data && config.lanyard.active ? (
           data.data.discord_status == "idle" ? (
