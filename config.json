@@ -1,5 +1,9 @@
 {
     "nickname": "ustav",
+    "lanyard": {
+      "active": true,
+      "discordId": "801073563368947742"
+    },
     "accentColor": "#4c02b5",
     "avatarImgSrc": "https://avatars.githubusercontent.com/u/89479041",
     "buttons": [

@@ -10,6 +10,11 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 import { motion } from "framer-motion";
+import { Avatar } from "@nextui-org/avatar";
+import useSWR from "swr";
+import axios from "axios";
+import { Badge } from "@nextui-org/badge";
+import { Tooltip } from "@nextui-org/tooltip";
 
 import * as gallery from "../config.gallery.json";
 import * as config from "../config.json";
@@ -18,16 +23,83 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { DiscordIcon } from "@/components/icons";
 
 export default function Home() {
+  interface ILanyardResponse {
+    data: ILanyardResponseData;
+  }
+  interface ILanyardResponseData {
+    discord_status: string;
+    activities: ILanyardActivity[];
+  }
+  interface ILanyardActivity {
+    name: string;
+    state: string;
+    details: string;
+  }
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { data } = useSWR<ILanyardResponse>("/lanyard", async () => {
+    const res = await axios.get(
+      "https://api.lanyard.rest/v1/users/" + config.lanyard.discordId,
+    );
+
+    return res.data;
+  });
 
   return (
     <div className="flex flex-col items-center justify-center gap-8 mt-2">
-      <div className="flex flex-col items-center">
-        <img
-          alt="avatar"
-          className="w-28 h-28 rounded-full border-2 border-foreground-300"
-          src={config.avatarImgSrc}
-        />
+      <div className="flex flex-col items-center gap-4">
+        {data && config.lanyard.active ? (
+          data.data.discord_status == "idle" ? (
+            <Badge
+              color="warning"
+              content="idle"
+              placement="bottom-right"
+              size="lg"
+              variant="solid"
+            >
+              <Tooltip
+                color="primary"
+                showArrow={true}
+                content={
+                  <div className="flex flex-col items-center justify-center text-center p-2">
+                    <h1 className="text-center">
+                      Currently on:{" "}
+                      <span className="font-bold">
+                        {data.data.activities[0].name}
+                      </span>
+                    </h1>
+                    <div className="text-sm flex flex-col">
+                      <h2>{data.data.activities[0].state}</h2>
+                      <h2>{data.data.activities[0].details}</h2>
+                    </div>
+                  </div>
+                }
+              >
+                <Avatar
+                  isBordered
+                  className="w-24 h-24"
+                  color="primary"
+                  size="lg"
+                  src={config.avatarImgSrc}
+                />
+              </Tooltip>
+            </Badge>
+          ) : (
+            <Avatar
+              isBordered
+              className="w-24 h-24"
+              size="lg"
+              src={config.avatarImgSrc}
+            />
+          )
+        ) : (
+          <Avatar
+            isBordered
+            className="w-24 h-24"
+            size="lg"
+            src={config.avatarImgSrc}
+          />
+        )}
         <h1 className="text-2xl">{config.nickname}</h1>
       </div>
       <div className="flex flex-row gap-4 justify-center items-center">
