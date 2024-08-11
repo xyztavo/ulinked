@@ -60,7 +60,7 @@ export default function Home() {
               <Tooltip
                 color="primary"
                 content={
-                  data.data.activities && (
+                  data.data.activities[0] && (
                     <div className="flex flex-col items-center justify-center text-center p-2">
                       <h1 className="text-center">
                         Currently on:{" "}
