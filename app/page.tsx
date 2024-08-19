@@ -1,5 +1,5 @@
 "use client";
-import { Camera, Github, Instagram, Linkedin } from "lucide-react";
+import { Camera, Github, Instagram, Linkedin, Music } from "lucide-react";
 import { Button } from "@nextui-org/button";
 import {
   Modal,
@@ -202,6 +202,14 @@ export default function Home() {
           onClick={() => window.open(config.linkedInLink, "_blank")}
         >
           <Linkedin />
+        </Button>
+        <Button
+          isIconOnly
+          className="text-white bg-[#da1a1a]"
+          size="sm"
+          onClick={() => window.open(config.ytMusicLink, "_blank")}
+        >
+          <Music />
         </Button>
       </div>
       <h2>{config.footer}</h2>

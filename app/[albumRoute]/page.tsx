@@ -23,16 +23,13 @@ export default function Album() {
   );
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  
   return (
     <div className="flex flex-col gap-4">
-       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col">
-                My Albums
-              </ModalHeader>
+              <ModalHeader className="flex flex-col">My Albums</ModalHeader>
               <ModalBody className="flex flex-row items-center justify-center flex-wrap">
                 {gallery.albums.map((album, i) => (
                   <motion.a
@@ -66,10 +63,7 @@ export default function Album() {
         </ModalContent>
       </Modal>
       <div className="flex flex-row gap-6">
-        <Button
-          isIconOnly
-          onPress={() => window.location.replace("/")}
-        >
+        <Button isIconOnly onPress={() => window.location.replace("/")}>
           <ArrowLeftCircleIcon />
         </Button>
         <ThemeSwitch />
@@ -86,12 +80,49 @@ export default function Album() {
               className="flex flex-row flex-wrap items-center justify-center gap-8"
             >
               {album.images.map((image, i) => {
+                const {
+                  isOpen: isImageOpen,
+                  onOpen: onImageOpen,
+                  onOpenChange: onImageOpenChange,
+                  // eslint-disable-next-line react-hooks/rules-of-hooks
+                } = useDisclosure();
+
                 return (
                   <motion.div
                     key={i}
                     className="flex flex-col items-center justify-center"
                     whileHover={{ scale: 1.1 }}
+                    onClick={onImageOpen}
                   >
+                    <Modal
+                      isOpen={isImageOpen}
+                      onOpenChange={onImageOpenChange}
+                    >
+                      <ModalContent>
+                        {(onClose) => (
+                          <>
+                            <ModalHeader className="flex flex-col">
+                              {image.title}
+                            </ModalHeader>
+                            <ModalBody className="flex flex-row items-center justify-center flex-wrap">
+                              <img
+                                alt={"image of " + image.title}
+                                src={image.src}
+                              />
+                            </ModalBody>
+                            <ModalFooter>
+                              <Button
+                                className="text-white"
+                                color="primary"
+                                onPress={onClose}
+                              >
+                                Close
+                              </Button>
+                            </ModalFooter>
+                          </>
+                        )}
+                      </ModalContent>
+                    </Modal>
                     <img alt="" className="w-60 rounded-md " src={image.src} />
                     <h1 className=" mt-[-1.5rem] rounded-md  text-white  font-bold bg-gradient-to-t from-black to-transparent  w-full text-center">
                       {image.title}
