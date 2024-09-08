@@ -11,6 +11,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
+import Video from "next-video";
 
 import * as gallery from "../../config.gallery.json";
 
@@ -19,7 +20,7 @@ import { ThemeSwitch } from "@/components/theme-switch";
 export default function Album() {
   const params = useParams<{ albumRoute: string }>();
   const results = gallery.albums.filter(
-    (album) => album.route == params.albumRoute,
+    (album) => album.route == params.albumRoute
   );
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -87,7 +88,45 @@ export default function Album() {
                   // eslint-disable-next-line react-hooks/rules-of-hooks
                 } = useDisclosure();
 
-                return (
+                return image.src.endsWith(".mp4") ? (
+                  <motion.div
+                    key={i}
+                    className="flex flex-col items-center justify-center"
+                    whileHover={{ scale: 1.1 }}
+                    onClick={onImageOpen}
+                  >
+                    <Modal
+                      isOpen={isImageOpen}
+                      onOpenChange={onImageOpenChange}
+                    >
+                      <ModalContent className="scale-100 lg:scale-150">
+                        {(onClose) => (
+                          <>
+                            <ModalHeader className="flex flex-col">
+                              {image.title}
+                            </ModalHeader>
+                            <ModalBody className="flex flex-row items-center justify-center flex-wrap ">
+                              <Video src={image.src}   />
+                            </ModalBody>
+                            <ModalFooter>
+                              <Button
+                                className="text-white"
+                                color="primary"
+                                onPress={onClose}
+                              >
+                                Close
+                              </Button>
+                            </ModalFooter>
+                          </>
+                        )}
+                      </ModalContent>
+                    </Modal>
+                    <img alt="fsdjafsdja" src={image.src} />
+                    <h1 className=" mt-[-1.5rem] rounded-md  text-white  font-bold bg-gradient-to-t from-black to-transparent  w-full text-center">
+                      {image.title}
+                    </h1>
+                  </motion.div>
+                ) : (
                   <motion.div
                     key={i}
                     className="flex flex-col items-center justify-center"
