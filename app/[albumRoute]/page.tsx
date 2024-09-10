@@ -1,7 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import { Button } from "@nextui-org/button";
-import { ArrowLeftCircleIcon, Camera } from "lucide-react";
+import { ArrowLeftCircleIcon, Camera, PlayCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import {
   Modal,
@@ -14,13 +14,14 @@ import {
 import Video from "next-video";
 
 import * as gallery from "../../config.gallery.json";
+import * as config from "../../config.json";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 
 export default function Album() {
   const params = useParams<{ albumRoute: string }>();
   const results = gallery.albums.filter(
-    (album) => album.route == params.albumRoute
+    (album) => album.route == params.albumRoute,
   );
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -80,7 +81,7 @@ export default function Album() {
               key={i}
               className="flex flex-row flex-wrap items-center justify-center gap-8"
             >
-              {album.images.map((image, i) => {
+              {album.posts.map((image, i) => {
                 const {
                   isOpen: isImageOpen,
                   onOpen: onImageOpen,
@@ -88,10 +89,10 @@ export default function Album() {
                   // eslint-disable-next-line react-hooks/rules-of-hooks
                 } = useDisclosure();
 
-                return image.src.endsWith(".mp4") ? (
+                return image.videoSrc ? (
                   <motion.div
                     key={i}
-                    className="flex flex-col items-center justify-center"
+                    className="flex flex-col items-center justify-center cursor-pointer"
                     whileHover={{ scale: 1.1 }}
                     onClick={onImageOpen}
                   >
@@ -106,7 +107,11 @@ export default function Album() {
                               {image.title}
                             </ModalHeader>
                             <ModalBody className="flex flex-row items-center justify-center flex-wrap ">
-                              <Video src={image.src}   />
+                              <Video
+                                autoPlay
+                                accentColor={config.accentColor}
+                                src={image.videoSrc}
+                              />
                             </ModalBody>
                             <ModalFooter>
                               <Button
@@ -121,15 +126,16 @@ export default function Album() {
                         )}
                       </ModalContent>
                     </Modal>
-                    <img alt="fsdjafsdja" src={image.src} />
+                    <img alt="" className="w-60 rounded-md " src={image.src} />
                     <h1 className=" mt-[-1.5rem] rounded-md  text-white  font-bold bg-gradient-to-t from-black to-transparent  w-full text-center">
                       {image.title}
                     </h1>
+                    <PlayCircle className="absolute w-12 h-12" color="white" />
                   </motion.div>
                 ) : (
                   <motion.div
                     key={i}
-                    className="flex flex-col items-center justify-center"
+                    className="flex flex-col items-center justify-center cursor-pointer"
                     whileHover={{ scale: 1.1 }}
                     onClick={onImageOpen}
                   >

@@ -4,10 +4,11 @@
       "title": "gym💪1",
       "route": "gym1",
       "coverImageSrc": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg",
-      "images": [
+      "posts": [
         {
           "title": "1st week",
-          "src": "/buziosfix.mp4"
+          "src": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg",
+          "videoSrc": "/assets/buziosfix.mp4"
         },
         {
           "title": "2nd week",
@@ -23,7 +24,7 @@
       "title": "cars",
       "route": "cars",
       "coverImageSrc": "https://blog.pneustore.com.br/wp-content/uploads/2022/09/IMG_2176-1-e1664197556142.jpg",
-      "images": [
+      "posts": [
         {
           "title": "based car",
           "src": "https://blog.pneustore.com.br/wp-content/uploads/2022/09/IMG_2176-1-e1664197556142.jpg"
