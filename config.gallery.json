@@ -15,7 +15,8 @@
         },
         {
           "title": "2nd week",
-          "src": "/assets/me/grafitti.jpg"
+          "src": "/assets/me/grafitti.jpg",
+          "videoSrc": ""
         }
       ]
     },
