@@ -1,37 +1,33 @@
 {
   "albums": [
     {
-      "title": "gym💪1",
-      "route": "gym1",
-      "coverImageSrc": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg",
+      "title": "me",
+      "route": "me",
+      "coverImageSrc": "https://lh3.googleusercontent.com/p2A31eJoSiiH8aF6E7GRU-2vUJTeqNBTnnuo0OmSu_lI831St_sMU_D4vNd6_vFJvIISkFiRYJgwnmTs=w544-h544-l90-rj",
       "posts": [
         {
           "title": "1st week",
-          "src": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg",
-          "videoSrc": "/assets/buziosfix.mp4"
+          "src": "/assets/me/skate-yellow-flowers.jpg"
         },
         {
           "title": "2nd week",
-          "src": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg"
+          "src": "/assets/me/back.jpg"
         },
         {
           "title": "2nd week",
-          "src": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg"
+          "src": "/assets/me/grafitti.jpg"
         }
       ]
     },
     {
-      "title": "cars",
-      "route": "cars",
+      "title": "test",
+      "route": "test",
       "coverImageSrc": "https://blog.pneustore.com.br/wp-content/uploads/2022/09/IMG_2176-1-e1664197556142.jpg",
       "posts": [
         {
-          "title": "based car",
-          "src": "https://blog.pneustore.com.br/wp-content/uploads/2022/09/IMG_2176-1-e1664197556142.jpg"
-        },
-        {
-          "title": "based car 2",
-          "src": "https://blog.pneustore.com.br/wp-content/uploads/2022/09/IMG_2176-1-e1664197556142.jpg"
+          "title": "video test",
+          "src": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg",
+          "videoSrc": "/assets/buziosfix.mp4"
         }
       ]
     }
