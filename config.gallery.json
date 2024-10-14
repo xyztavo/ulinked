@@ -6,29 +6,17 @@
       "coverImageSrc": "https://lh3.googleusercontent.com/p2A31eJoSiiH8aF6E7GRU-2vUJTeqNBTnnuo0OmSu_lI831St_sMU_D4vNd6_vFJvIISkFiRYJgwnmTs=w544-h544-l90-rj",
       "posts": [
         {
-          "title": "1st week",
+          "title": "skate",
           "src": "/assets/me/skate-yellow-flowers.jpg"
         },
         {
-          "title": "2nd week",
+          "title": "focus",
           "src": "/assets/me/back.jpg"
         },
         {
-          "title": "2nd week",
+          "title": "graffiti",
           "src": "/assets/me/grafitti.jpg",
           "videoSrc": ""
-        }
-      ]
-    },
-    {
-      "title": "test",
-      "route": "test",
-      "coverImageSrc": "https://blog.pneustore.com.br/wp-content/uploads/2022/09/IMG_2176-1-e1664197556142.jpg",
-      "posts": [
-        {
-          "title": "video test",
-          "src": "https://i.pinimg.com/originals/c8/ab/61/c8ab614eb7f602cf471e1fdefd06f8a1.jpg",
-          "videoSrc": "/assets/buziosfix.mp4"
         }
       ]
     }
