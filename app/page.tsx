@@ -39,15 +39,14 @@ export default function Home() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { data } = useSWR<ILanyardResponse>("/lanyard", async () => {
     const res = await axios.get(
-      "https://api.lanyard.rest/v1/users/" + config.lanyard.discordId,
+      "https://api.lanyard.rest/v1/users/" + config.lanyard.discordId
     );
 
     return res.data;
   });
 
-
   return (
-    <div className="flex flex-col items-center justify-center gap-8">
+    <div className={"flex flex-col items-center justify-center gap-8"}>
       <div className="flex flex-col items-center gap-4">
         {data && config.lanyard.active ? (
           data.data.discord_status == "idle" ? (
@@ -83,11 +82,11 @@ export default function Home() {
                     </div>
                   )
                 }
-                showArrow={true}
+                showArrow={false}
               >
                 <Avatar
                   isBordered
-                  className="w-24 h-24"
+                  className="w-24 h-24 bg-primary/25"
                   color="primary"
                   size="lg"
                   src={config.avatarImgSrc}
@@ -97,7 +96,7 @@ export default function Home() {
           ) : (
             <Avatar
               isBordered
-              className="w-24 h-24"
+              className="w-24 h-24 bg-transparen "
               size="lg"
               src={config.avatarImgSrc}
             />
@@ -105,7 +104,7 @@ export default function Home() {
         ) : (
           <Avatar
             isBordered
-            className="w-24 h-24"
+            className="w-24 h-24 bg-transparent"
             size="lg"
             src={config.avatarImgSrc}
           />
@@ -113,7 +112,11 @@ export default function Home() {
         <h1 className="text-2xl">{config.nickname}</h1>
       </div>
       <div className="flex flex-row gap-4 justify-center items-center">
-        <Button isIconOnly color="secondary" onPress={onOpen}>
+        <Button
+          isIconOnly
+          className="shadow-custom bg-transparent hover:bg-primary"
+          onPress={onOpen}
+        >
           <Camera />
         </Button>
         <ThemeSwitch />
@@ -132,14 +135,14 @@ export default function Home() {
                     key={i}
                     className="flex flex-col items-center justify-center"
                     href={album.route}
-                    whileHover={{ scale: 1.3, zIndex: 10 }}
+                    whileHover={{ scale: 1.1, zIndex: 10 }}
                   >
                     <img
                       alt="album cover"
                       className="w-32 h-32 rounded-t-md border-2 border-foreground-300"
                       src={album.coverImageSrc}
                     />
-                    <Button className="w-full rounded-b-lg" radius="none">
+                    <Button className="w-full rounded-b-lg font-normal" radius="none">
                       {album.title}
                     </Button>
                   </motion.a>
@@ -162,8 +165,7 @@ export default function Home() {
         {config.buttons.map((button) => (
           <Button
             key={button.link}
-            className="text-white w-64"
-            color="primary"
+            className="text-foreground hover:text-white hover:bg-primary bg-transparent w-64 shadow-custom"
             size="lg"
             onClick={() => window.open(button.link, "_blank")}
           >
@@ -171,47 +173,62 @@ export default function Home() {
           </Button>
         ))}
       </div>
-      <div className=" flex flex-row items-center justify-center gap-4">
-        <Button
-          isIconOnly
-          className="text-white bg-slate-800"
-          size="sm"
-          onClick={() => window.open(config.githubLink, "_blank")}
-        >
-          <Github />
-        </Button>
-        <Button
-          isIconOnly
-          className="text-white bg-gradient-to-br from-pink-500 to-purple-500"
-          size="sm"
-          onClick={() => window.open(config.instagramLink, "_blank")}
-        >
-          <Instagram />
-        </Button>
-        <Button
-          isIconOnly
-          className="text-white bg-[#7289da]"
-          size="sm"
-          onClick={() => window.open(config.discordLink, "_blank")}
-        >
-          <DiscordIcon />
-        </Button>
-        <Button
-          isIconOnly
-          className="text-white bg-[#0e76a8]"
-          size="sm"
-          onClick={() => window.open(config.linkedInLink, "_blank")}
-        >
-          <Linkedin />
-        </Button>
-        <Button
-          isIconOnly
-          className="text-white bg-[#da1a1a]"
-          size="sm"
-          onClick={() => window.open(config.ytMusicLink, "_blank")}
-        >
-          <Music />
-        </Button>
+      <div className="flex flex-row items-center justify-center gap-4">
+        {config.githubLink && (
+           <Button
+           isIconOnly
+           className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-slate-800"
+           size="sm"
+           onClick={() => window.open(config.githubLink, "_blank")}
+         >
+           <Github />
+         </Button>
+        )}
+        {config.instagramLink && (
+          <Button
+            isIconOnly
+            className="relative text-foreground bg-transparent hover:text-white shadow-custom overflow-hidden rounded-md transition-all duration-300 group"
+            size="sm"
+            onClick={() => window.open(config.instagramLink, "_blank")}
+          >
+            {/* Gradient background */}
+            <span className="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {/* Icon content */}
+            <span className="relative z-10">
+              <Instagram />
+            </span>
+          </Button>
+        )}
+        {config.discordLink && (
+          <Button
+            isIconOnly
+            className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#7289da]"
+            size="sm"
+            onClick={() => window.open(config.discordLink, "_blank")}
+          >
+            <DiscordIcon />
+          </Button>
+        )}
+        {config.linkedInLink && (
+          <Button
+            isIconOnly
+            className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#0e76a8]"
+            size="sm"
+            onClick={() => window.open(config.linkedInLink, "_blank")}
+          >
+            <Linkedin />
+          </Button>
+        )}
+        {config.ytMusicLink && (
+          <Button
+            isIconOnly
+            className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#da1a1a]"
+            size="sm"
+            onClick={() => window.open(config.ytMusicLink, "_blank")}
+          >
+            <Music />
+          </Button>
+        )}
       </div>
       <h2>{config.footer}</h2>
     </div>

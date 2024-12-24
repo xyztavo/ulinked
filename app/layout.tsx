@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import { fontGothic } from "@/config/fonts";
 
 export const metadata: Metadata = {
   title: {
@@ -34,14 +34,17 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en">
       <head />
       <body
-        className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
+        className={clsx("min-h-screen bg-background antialiased font-mono")}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+          <div className="absolute inset-0 bg-[url('https://cliply.co/wp-content/uploads/2021/07/402107790_STATIC_NOISE_400.gif')] bg-cover bg-center opacity-5" />
           <div className="relative flex flex-col h-screen">
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+            <main
+              className={
+                "container mx-auto max-w-7xl pt-16 px-6 flex-grow " +
+                fontGothic.className
+              }
+            >
               {children}
             </main>
           </div>

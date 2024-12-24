@@ -1,11 +1,12 @@
-import { Fira_Code as FontMono, Inter as FontSans } from "next/font/google";
+import { Didact_Gothic, Inter as FontSans } from "next/font/google";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-export const fontMono = FontMono({
+export const fontGothic = Didact_Gothic({
   subsets: ["latin"],
-  variable: "--font-mono",
-});
+  variable: "--font-gothic",
+  weight: "400",
+})
