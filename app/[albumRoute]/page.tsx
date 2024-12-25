@@ -26,7 +26,7 @@ export default function Album() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 z-40">
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

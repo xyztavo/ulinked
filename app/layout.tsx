@@ -37,11 +37,14 @@ export default function RootLayout({
         className={clsx("min-h-screen bg-background antialiased font-mono")}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="absolute inset-0 bg-[url('https://cliply.co/wp-content/uploads/2021/07/402107790_STATIC_NOISE_400.gif')] bg-cover bg-center opacity-5" />
-          <div className="relative flex flex-col h-screen">
+          <div className="relative flex flex-col min-h-screen">
+            {/* Background */}
+            <div className="absolute inset-0 bg-[url('https://cliply.co/wp-content/uploads/2021/07/402107790_STATIC_NOISE_400.gif')] bg-cover bg-center opacity-5 pointer-events-none z-0" />
+
+            {/* Main Content */}
             <main
               className={
-                "container mx-auto max-w-7xl pt-16 px-6 flex-grow " +
+                "relative z-10 container mx-auto max-w-7xl pt-16 px-6 flex-grow " +
                 fontGothic.className
               }
             >
