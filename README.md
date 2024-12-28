@@ -1,53 +1,47 @@
-# Next.js & NextUI Template
-
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
-
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
-
-## Technologies Used
-
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
-
-## How to Use
-
-### Use the template with create-next-app
-
-To create a new project based on this template using `create-next-app`, run the following command:
-
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
+# based linktree
+- uses next ui 
+- [config file](./config.json)
+- has album to show pics n videos
+- supports discord activities through [lanyard](https://github.com/Phineas/lanyard)
+## usage
+- go to [config file](./config.json)
+```json
+{
+    "nickname": "ustav",
+    "lanyard": {
+      "active": true, <  if you dont wish to use it, set to false
+      "discordId": "801073563368947742"
+    },
+    "accentColor": "#4c02b5",
+    "avatarImgSrc": "/assets/profile.png",
+    "buttons": [
+      {
+        "title": "My Pokemon Game",
+        "link": "https://pokedoro-next.vercel.app/"
+      },
+      {
+        "title": "My Projects",
+        "link": "https://uprojects.vercel.app/"
+      },
+      {
+        "title": "Github",
+        "link": "https://github.com/xyztavo"
+      },
+      {
+        "title": "See this project code",
+        "link": "https://github.com/xyztavo/DaisyDevLinks"
+      }
+    ],
+    "githubLink": "https://github.com/xyztavo",
+    "instagramLink": "https://www.instagram.com/luna.gustah/",
+    "linkedInLink": "https://www.linkedin.com/in/gustavo-luna-6a33942aa/",
+    "discordLink": "https://discord.com/users/801073563368947742",
+    "ytMusicLink": "https://music.youtube.com/channel/UCazPZA5I0goXo85P_LAJAkA?si=FoBmOLIaz_O-aBJd",
+    "footer": "made with ❤️, ustav"
+  }
+  
 ```
-
-### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
-
-```bash
-npm install
-```
-
-### Run the development server
-
-```bash
-npm run dev
-```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@nextui-org/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+## screen shots
+<img src="./public/assets/ss1.png" />
+<img src="./public/assets/ss2.png" />
+<img src="./public/assets/ss3.png" />
