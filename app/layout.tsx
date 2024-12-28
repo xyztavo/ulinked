@@ -39,7 +39,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col min-h-screen">
             {/* Background */}
-            <div className="absolute inset-0 bg-[url('https://cliply.co/wp-content/uploads/2021/07/402107790_STATIC_NOISE_400.gif')] bg-cover bg-center opacity-5 pointer-events-none z-0" />
+            <div className="absolute inset-0 bg-[url('/assets/static.gif')] bg-repeat bg-[length:300px_300px] opacity-5 pointer-events-none z-0" />
 
             {/* Main Content */}
             <main
