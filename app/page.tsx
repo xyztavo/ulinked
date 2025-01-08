@@ -21,23 +21,71 @@ import * as config from "../config.json";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 import { DiscordIcon } from "@/components/icons";
+export interface Response {
+  data: Data;
+  success: boolean;
+}
+
+export interface Data {
+  kv: Kv;
+  discord_user: DiscordUser;
+  activities: Activity[];
+  discord_status: string;
+  active_on_discord_web: boolean;
+  active_on_discord_desktop: boolean;
+  active_on_discord_mobile: boolean;
+  listening_to_spotify: boolean;
+  spotify: any;
+}
+
+export interface Kv {
+  ustav: string;
+}
+
+export interface DiscordUser {
+  id: string;
+  username: string;
+  avatar: string;
+  discriminator: string;
+  clan: any;
+  avatar_decoration_data: any;
+  bot: boolean;
+  global_name: string;
+  primary_guild: any;
+  display_name: string;
+  public_flags: number;
+}
+
+export interface Activity {
+  flags: number;
+  id: string;
+  name: string;
+  type: number;
+  state: string;
+  session_id: string;
+  details: string;
+  application_id: string;
+  timestamps: Timestamps;
+  assets: Assets;
+  buttons: string[];
+  created_at: number;
+}
+
+export interface Timestamps {
+  start: number;
+}
+
+export interface Assets {
+  large_image: string;
+  large_text: string;
+  small_image: string;
+  small_text: string;
+}
 
 export default function Home() {
-  interface ILanyardResponse {
-    data: ILanyardResponseData;
-  }
-  interface ILanyardResponseData {
-    discord_status: string;
-    activities: ILanyardActivity[];
-  }
-  interface ILanyardActivity {
-    name: string;
-    state: string;
-    details: string;
-  }
-
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { data } = useSWR<ILanyardResponse>("/lanyard", async () => {
+  const { isOpen: isSpotifyOpen, onOpen: onSpotifyOpen, onOpenChange: onSpotifyOpenChange } = useDisclosure();
+  const { data } = useSWR<Response>("/lanyard", async () => {
     const res = await axios.get(
       "https://api.lanyard.rest/v1/users/" + config.lanyard.discordId
     );
@@ -48,11 +96,55 @@ export default function Home() {
   return (
     <div className={"flex flex-col items-center justify-center gap-8"}>
       <div className="flex flex-col items-center gap-4">
+        {data?.data.spotify && (
+          <Button
+            className="shadow-custom bg-transparent hover:bg-primary text-white"
+            onPress={onSpotifyOpen} // This will trigger opening the modal
+          >
+            <Music /> {data.data.spotify.song}
+          </Button>
+        )}
+
+        {/* Spotify Song Modal */}
+        <Modal isOpen={isSpotifyOpen} onOpenChange={onSpotifyOpenChange}>
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">
+                  Currently Playing on Spotify
+                </ModalHeader>
+                <ModalBody className="flex flex-col items-center justify-center gap-4">
+                  <div className="flex flex-col items-center">
+                    <img
+                      src={data?.data.spotify.album_art_url} // Assuming album_art_url is available
+                      alt="Album Art"
+                      className="w-32 h-32 rounded-lg"
+                    />
+                    <h2 className="text-xl font-bold mt-2">
+                      {data?.data.spotify.song}
+                    </h2>
+                    <p className="text-sm">Artist: {data?.data.spotify.artist}</p>
+                    <p className="text-sm">Album: {data?.data.spotify.album}</p>
+                  </div>
+                </ModalBody>
+                <ModalFooter>
+                  <Button
+                    className="text-white"
+                    color="primary"
+                    onPress={onClose}
+                  >
+                    Close
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
         {data && config.lanyard.active ? (
-          data.data.discord_status == "idle" ? (
+          data.data.discord_status != "offline" ? (
             <Badge
-              color="warning"
-              content="idle"
+              color={data.data.discord_status == "idle" ? "warning" : "success"}
+              content={data.data.discord_status}
               placement="bottom-right"
               size="lg"
               variant="solid"
@@ -65,18 +157,18 @@ export default function Home() {
                       <h1 className="text-center">
                         Currently on:{" "}
                         <span className="font-bold">
-                          {data.data.activities[0].name &&
-                            data.data.activities[0].name}
+                          {data.data.activities[data.data.activities.length - 1].name &&
+                            data.data.activities[data.data.activities.length - 1].name}
                         </span>
                       </h1>
                       <div className="text-sm flex flex-col">
                         <h2>
-                          {data.data.activities[0].state &&
-                            data.data.activities[0].state}
+                          {data.data.activities[data.data.activities.length - 1].state &&
+                            data.data.activities[data.data.activities.length - 1].state}
                         </h2>
                         <h2>
-                          {data.data.activities[0].details &&
-                            data.data.activities[0].details}
+                          {data.data.activities[data.data.activities.length - 1].details &&
+                            data.data.activities[data.data.activities.length - 1].details}
                         </h2>
                       </div>
                     </div>
@@ -114,7 +206,7 @@ export default function Home() {
       <div className="flex flex-row gap-4 justify-center items-center">
         <Button
           isIconOnly
-          className="shadow-custom bg-transparent hover:bg-primary"
+          className="shadow-custom hover:text-white bg-transparent hover:bg-primary"
           onPress={onOpen}
         >
           <Camera />
@@ -142,7 +234,10 @@ export default function Home() {
                       className="w-32 h-32 rounded-t-md border-2 border-foreground-300"
                       src={album.coverImageSrc}
                     />
-                    <Button className="w-full rounded-b-lg font-normal" radius="none">
+                    <Button
+                      className="w-full rounded-b-lg font-normal"
+                      radius="none"
+                    >
                       {album.title}
                     </Button>
                   </motion.a>
@@ -175,14 +270,14 @@ export default function Home() {
       </div>
       <div className="flex flex-row items-center justify-center gap-4">
         {config.githubLink && (
-           <Button
-           isIconOnly
-           className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-slate-800"
-           size="sm"
-           onClick={() => window.open(config.githubLink, "_blank")}
-         >
-           <Github />
-         </Button>
+          <Button
+            isIconOnly
+            className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-slate-800"
+            size="sm"
+            onClick={() => window.open(config.githubLink, "_blank")}
+          >
+            <Github />
+          </Button>
         )}
         {config.instagramLink && (
           <Button
