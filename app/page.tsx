@@ -91,7 +91,7 @@ export default function Home() {
     );
 
     return res.data;
-  });
+  }, { refreshInterval: 10000 });
 
   return (
     <div className={"flex flex-col items-center justify-center gap-8"}>
