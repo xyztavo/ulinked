@@ -182,6 +182,7 @@ export default function Home() {
             >
               <Tooltip
                 color="primary"
+                placement="bottom"
                 content={
                   data.data.activities[0] && (
                     <div className="flex flex-col items-center justify-center text-center p-2">
