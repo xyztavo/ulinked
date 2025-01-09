@@ -105,12 +105,15 @@ export default function Home() {
     <div className={"flex flex-col items-center justify-center gap-8"}>
       <div className="flex flex-col items-center gap-4">
         {data?.data.spotify && (
-          <Button
-            className="shadow-custom bg-transparent hover:bg-primary max-w-64 text-foreground"
-            onPress={onSpotifyOpen} // This will trigger opening the modal
-          >
-            <Music /> {data.data.spotify.song && <>{data.data.spotify.song}</>}
-          </Button>
+          <div className="flex flex-row items-center justify-center gap-2">
+            <Music className=" bg-background rounded-md shadow-custom w-8 h-8 p-2 hover:bg-primary cursor-pointer" onClick={onSpotifyOpen} />
+            <Button
+              className="shadow-custom bg-transparent hover:bg-primary max-w-60 text-foreground"
+              onPress={onSpotifyOpen} // This will trigger opening the modal
+            >
+              {data.data.spotify.song && <>{data.data.spotify.song}</>}
+            </Button>
+          </div>
         )}
         <Modal isOpen={isSpotifyOpen} onOpenChange={onSpotifyOpenChange}>
           <ModalContent>
@@ -118,30 +121,40 @@ export default function Home() {
               <>
                 <ModalHeader className="flex flex-col gap-1">
                   Currently Playing on Spotify
+                  {/* https://open.spotify.com/track/3JQUIVHsxgnMAyXqbZU5zO */}
                 </ModalHeader>
                 <ModalBody className="flex flex-col items-center justify-center gap-4">
                   <div className="flex flex-col items-center">
-                    {data?.data.spotify?.album_art_url && (
-                      <img
-                        src={data.data.spotify.album_art_url} // Safe access
-                        alt="Album Art"
-                        className="w-32 h-32 rounded-lg"
-                      />
-                    )}
-                    {data?.data.spotify?.song && (
-                      <h2 className="text-xl font-bold mt-2">
-                        {data.data.spotify.song}
-                      </h2>
-                    )}
-                    {data?.data.spotify?.artist && (
-                      <p className="text-sm">
-                        Artist: {data.data.spotify.artist}
-                      </p>
-                    )}
-                    {data?.data.spotify?.album && (
-                      <p className="text-sm">
-                        Album: {data.data.spotify.album}
-                      </p>
+                    {data?.data.spotify?.track_id && (
+                      <a
+                        href={`https://open.spotify.com/track/${data?.data.spotify?.track_id}`}
+                        target="_blank"
+                        className="hover:scale-110 transition-transform flex flex-col items-center"
+                        rel="noreferrer"
+                      >
+                        {data?.data.spotify?.album_art_url && (
+                          <img
+                            src={data.data.spotify.album_art_url} // Safe access
+                            alt="Album Art"
+                            className="w-32 h-32 rounded-lg"
+                          />
+                        )}
+                        {data?.data.spotify?.song && (
+                          <h2 className="text-xl font-bold mt-2 underline">
+                            {data.data.spotify.song}
+                          </h2>
+                        )}
+                        {data?.data.spotify?.artist && (
+                          <p className="text-sm">
+                            Artist: {data.data.spotify.artist}
+                          </p>
+                        )}
+                        {data?.data.spotify?.album && (
+                          <p className="text-sm">
+                            Album: {data.data.spotify.album}
+                          </p>
+                        )}
+                      </a>
                     )}
                   </div>
                 </ModalBody>
