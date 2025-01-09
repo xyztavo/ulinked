@@ -84,14 +84,22 @@ export interface Assets {
 
 export default function Home() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { isOpen: isSpotifyOpen, onOpen: onSpotifyOpen, onOpenChange: onSpotifyOpenChange } = useDisclosure();
-  const { data } = useSWR<Response>("/lanyard", async () => {
-    const res = await axios.get(
-      "https://api.lanyard.rest/v1/users/" + config.lanyard.discordId
-    );
+  const {
+    isOpen: isSpotifyOpen,
+    onOpen: onSpotifyOpen,
+    onOpenChange: onSpotifyOpenChange,
+  } = useDisclosure();
+  const { data } = useSWR<Response>(
+    "/lanyard",
+    async () => {
+      const res = await axios.get(
+        "https://api.lanyard.rest/v1/users/" + config.lanyard.discordId
+      );
 
-    return res.data;
-  }, { refreshInterval: 10000 });
+      return res.data;
+    },
+    { refreshInterval: 10000 }
+  );
 
   return (
     <div className={"flex flex-col items-center justify-center gap-8"}>
@@ -101,11 +109,9 @@ export default function Home() {
             className="shadow-custom bg-transparent hover:bg-primary max-w-64 text-foreground"
             onPress={onSpotifyOpen} // This will trigger opening the modal
           >
-            <Music /> {data.data.spotify.song}
+            <Music /> {data.data.spotify.song && <>{data.data.spotify.song}</>}
           </Button>
         )}
-
-        {/* Spotify Song Modal */}
         <Modal isOpen={isSpotifyOpen} onOpenChange={onSpotifyOpenChange}>
           <ModalContent>
             {(onClose) => (
@@ -115,16 +121,28 @@ export default function Home() {
                 </ModalHeader>
                 <ModalBody className="flex flex-col items-center justify-center gap-4">
                   <div className="flex flex-col items-center">
-                    <img
-                      src={data?.data.spotify.album_art_url} // Assuming album_art_url is available
-                      alt="Album Art"
-                      className="w-32 h-32 rounded-lg"
-                    />
-                    <h2 className="text-xl font-bold mt-2">
-                      {data?.data.spotify.song}
-                    </h2>
-                    <p className="text-sm">Artist: {data?.data.spotify.artist}</p>
-                    <p className="text-sm">Album: {data?.data.spotify.album}</p>
+                    {data?.data.spotify?.album_art_url && (
+                      <img
+                        src={data.data.spotify.album_art_url} // Safe access
+                        alt="Album Art"
+                        className="w-32 h-32 rounded-lg"
+                      />
+                    )}
+                    {data?.data.spotify?.song && (
+                      <h2 className="text-xl font-bold mt-2">
+                        {data.data.spotify.song}
+                      </h2>
+                    )}
+                    {data?.data.spotify?.artist && (
+                      <p className="text-sm">
+                        Artist: {data.data.spotify.artist}
+                      </p>
+                    )}
+                    {data?.data.spotify?.album && (
+                      <p className="text-sm">
+                        Album: {data.data.spotify.album}
+                      </p>
+                    )}
                   </div>
                 </ModalBody>
                 <ModalFooter>
@@ -157,18 +175,27 @@ export default function Home() {
                       <h1 className="text-center">
                         Currently on:{" "}
                         <span className="font-bold">
-                          {data.data.activities[data.data.activities.length - 1].name &&
-                            data.data.activities[data.data.activities.length - 1].name}
+                          {data.data.activities[data.data.activities.length - 1]
+                            .name &&
+                            data.data.activities[
+                              data.data.activities.length - 1
+                            ].name}
                         </span>
                       </h1>
                       <div className="text-sm flex flex-col">
                         <h2>
-                          {data.data.activities[data.data.activities.length - 1].state &&
-                            data.data.activities[data.data.activities.length - 1].state}
+                          {data.data.activities[data.data.activities.length - 1]
+                            .state &&
+                            data.data.activities[
+                              data.data.activities.length - 1
+                            ].state}
                         </h2>
                         <h2>
-                          {data.data.activities[data.data.activities.length - 1].details &&
-                            data.data.activities[data.data.activities.length - 1].details}
+                          {data.data.activities[data.data.activities.length - 1]
+                            .details &&
+                            data.data.activities[
+                              data.data.activities.length - 1
+                            ].details}
                         </h2>
                       </div>
                     </div>
