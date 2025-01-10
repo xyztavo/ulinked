@@ -192,7 +192,7 @@ export default function Home() {
                 placement="bottom"
                 content={
                   data.data.activities[0] && (
-                    <div className="flex flex-col items-center justify-center text-center p-2">
+                    <div className="flex flex-col text-white items-center justify-center text-center p-2">
                       <h1 className="text-center">
                         Currently on:{" "}
                         <span className="font-bold">
