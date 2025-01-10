@@ -20,7 +20,7 @@ import * as gallery from "../config.gallery.json";
 import * as config from "../config.json";
 
 import { ThemeSwitch } from "@/components/theme-switch";
-import { DiscordIcon } from "@/components/icons";
+import { DiscordIcon, SpotifyIcon } from "@/components/icons";
 export interface Response {
   data: Data;
   success: boolean;
@@ -370,6 +370,16 @@ export default function Home() {
             onClick={() => window.open(config.ytMusicLink, "_blank")}
           >
             <Music />
+          </Button>
+        )}
+        {config.spotifyLink && (
+          <Button
+            isIconOnly
+            className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#1DB954]"
+            size="sm"
+            onClick={() => window.open(config.spotifyLink, "_blank")}
+          >
+            <SpotifyIcon />
           </Button>
         )}
       </div>
