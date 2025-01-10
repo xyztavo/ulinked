@@ -106,7 +106,14 @@ export default function Home() {
       <div className="flex flex-col items-center gap-4">
         {data?.data.spotify && (
           <div className="flex flex-row items-center justify-center gap-2">
-            <Music className=" bg-background rounded-md shadow-custom w-8 h-8 p-2 hover:bg-primary cursor-pointer" onClick={onSpotifyOpen} />
+            <Button
+              isIconOnly
+              size="sm"
+              className="shadow-custom hover:text-white bg-transparent hover:bg-primary"
+              onClick={onSpotifyOpen}
+            >
+              <Music className="p-1" />
+            </Button>
             <Button
               className="shadow-custom bg-transparent hover:bg-primary max-w-60 text-foreground"
               onClick={onSpotifyOpen} // This will trigger opening the modal
