@@ -109,7 +109,7 @@ export default function Home() {
             <Music className=" bg-background rounded-md shadow-custom w-8 h-8 p-2 hover:bg-primary cursor-pointer" onClick={onSpotifyOpen} />
             <Button
               className="shadow-custom bg-transparent hover:bg-primary max-w-60 text-foreground"
-              onPress={onSpotifyOpen} // This will trigger opening the modal
+              onClick={onSpotifyOpen} // This will trigger opening the modal
             >
               {data.data.spotify.song && <>{data.data.spotify.song}</>}
             </Button>
@@ -162,7 +162,7 @@ export default function Home() {
                   <Button
                     className="text-white"
                     color="primary"
-                    onPress={onClose}
+                    onClick={onClose}
                   >
                     Close
                   </Button>
@@ -248,7 +248,7 @@ export default function Home() {
         <Button
           isIconOnly
           className="shadow-custom hover:text-white bg-transparent hover:bg-primary"
-          onPress={onOpen}
+          onClick={onOpen}
         >
           <Camera />
         </Button>
@@ -288,7 +288,7 @@ export default function Home() {
                 <Button
                   className="text-white"
                   color="primary"
-                  onPress={onClose}
+                  onClick={onClose}
                 >
                   Close
                 </Button>

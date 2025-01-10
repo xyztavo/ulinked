@@ -55,7 +55,7 @@ export default function Album() {
                 <Button
                   className="text-white"
                   color="primary"
-                  onPress={onClose}
+                  onClick={onClose}
                 >
                   Close
                 </Button>
@@ -65,11 +65,11 @@ export default function Album() {
         </ModalContent>
       </Modal>
       <div className="flex flex-row gap-6">
-        <Button isIconOnly onPress={() => window.location.replace("/")}>
+        <Button isIconOnly onClick={() => window.location.replace("/")}>
           <ArrowLeftCircleIcon />
         </Button>
         <ThemeSwitch />
-        <Button isIconOnly color="secondary" onPress={onOpen}>
+        <Button isIconOnly color="secondary" onClick={onOpen}>
           <Camera />
         </Button>
       </div>
@@ -117,7 +117,7 @@ export default function Album() {
                               <Button
                                 className="text-white"
                                 color="primary"
-                                onPress={onClose}
+                                onClick={onClose}
                               >
                                 Close
                               </Button>
@@ -159,7 +159,7 @@ export default function Album() {
                               <Button
                                 className="text-white"
                                 color="primary"
-                                onPress={onClose}
+                                onClick={onClose}
                               >
                                 Close
                               </Button>
