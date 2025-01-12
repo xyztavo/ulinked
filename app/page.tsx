@@ -166,23 +166,27 @@ export default function Home() {
                   </div>
                 </ModalBody>
                 <ModalFooter className="flex flex-row justify-between">
-                  {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */}
-                  <div
-                    className="relative w-10 h-10 rounded-md border-none transition-transform duration-300 hover:cursor-pointer hover:scale-110 overflow-hidden"
-                    onClick={() =>
-                      window.open(
-                        `https://open.spotify.com/track/${data?.data.spotify?.track_id}`,
-                        "_blank"
-                      )
-                    }
-                  >
-                    <img
-                      alt="a gif of a cat jamming to the music."
-                      className="w-full h-full"
-                      src="/assets/cat-jam.gif"
-                    />
-                    <span className="absolute inset-0 bg-gradient-to-tr from-transparent to-primary opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                  </div>
+                  {data?.data.spotify?.track_id && (
+                    <>
+                      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */}
+                      <div
+                        className="relative w-10 h-10 rounded-md border-none transition-transform duration-300 hover:cursor-pointer hover:scale-110 overflow-hidden"
+                        onClick={() =>
+                          window.open(
+                            `https://open.spotify.com/track/${data?.data.spotify?.track_id}`,
+                            "_blank"
+                          )
+                        }
+                      >
+                        <img
+                          alt="a gif of a cat jamming to the music."
+                          className="w-full h-full"
+                          src="/assets/cat-jam.gif"
+                        />
+                        <span className="absolute inset-0 bg-gradient-to-tr from-transparent to-primary opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                      </div>
+                    </>
+                  )}
 
                   <Button
                     className="text-white"
