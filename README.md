@@ -9,8 +9,8 @@
 {
     "nickname": "ustav",
     "lanyard": {
-      "active": true, <  if you dont wish to use it, set to false
-      "discordId": "801073563368947742"
+      "active": true, /*  if you dont wish to use it, set to false */
+      "discordId": "801073563368947742"  /* you can leave this empty if you are not using */
     },
     "accentColor": "#4c02b5",
     "avatarImgSrc": "/assets/profile.png",
@@ -36,7 +36,8 @@
     "instagramLink": "https://www.instagram.com/luna.gustah/",
     "linkedInLink": "https://www.linkedin.com/in/gustavo-luna-6a33942aa/",
     "discordLink": "https://discord.com/users/801073563368947742",
-    "ytMusicLink": "https://music.youtube.com/channel/UCazPZA5I0goXo85P_LAJAkA?si=FoBmOLIaz_O-aBJd",
+    "ytMusicLink": "",  /* if you dont wish the button to appear, leave it blank */
+    "spotifyLink": "https://open.spotify.com/user/314j255v3f5u2yvilbdzywnsxps4",
     "footer": "made with ❤️, ustav"
   }
   
@@ -45,3 +46,4 @@
 <img src="./public/assets/ss1.png" />
 <img src="./public/assets/ss2.png" />
 <img src="./public/assets/ss3.png" />
+<img src="./public/assets/ss4.png" />
