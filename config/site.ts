@@ -3,8 +3,5 @@ import * as config from "../config.json";
 
 export const siteConfig = {
   name: config.nickname + " bio",
-  description: config.nickname + " bio",
-  links: {
-    github: config.githubLink,
-  },
+  description: "my mogger linktree",
 };
