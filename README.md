@@ -1,10 +1,10 @@
 # based linktree
 - uses next ui 
-- [config file](./config.json)
+- [config file](https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/config.json)
 - has album to show pics n videos
 - supports discord activities through [lanyard](https://github.com/Phineas/lanyard)
 ## usage
-- go to [config file](./config.json)
+- go to [config file](https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/config.json)
 ```json
 {
     "nickname": "ustav",
@@ -43,7 +43,7 @@
   
 ```
 ## screen shots
-<img src="./public/assets/ss1.png" />
-<img src="./public/assets/ss2.png" />
-<img src="./public/assets/ss3.png" />
-<img src="./public/assets/ss4.png" />
+<img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss1.png" />
+<img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss2.png" />
+<img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss3.png" />
+<img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss4.png" />
