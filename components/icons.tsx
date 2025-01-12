@@ -97,10 +97,10 @@ export const SpotifyIcon: React.FC<IconSvgProps> = ({
 }) => {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}
+      xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path

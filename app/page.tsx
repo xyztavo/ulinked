@@ -108,8 +108,8 @@ export default function Home() {
           <div className="flex flex-row items-center justify-center gap-2">
             <Button
               isIconOnly
-              size="sm"
               className="shadow-custom hover:text-white bg-transparent hover:bg-primary"
+              size="sm"
               onClick={onSpotifyOpen}
             >
               <Music className="p-1" />
@@ -134,16 +134,16 @@ export default function Home() {
                   <div className="flex flex-col items-center">
                     {data?.data.spotify?.track_id && (
                       <a
-                        href={`https://open.spotify.com/track/${data?.data.spotify?.track_id}`}
-                        target="_blank"
                         className="hover:scale-110 transition-transform flex flex-col items-center"
+                        href={`https://open.spotify.com/track/${data?.data.spotify?.track_id}`}
                         rel="noreferrer"
+                        target="_blank"
                       >
                         {data?.data.spotify?.album_art_url && (
                           <img
-                            src={data.data.spotify.album_art_url} // Safe access
                             alt="Album Art"
                             className="w-32 h-32 rounded-lg"
+                            src={data.data.spotify.album_art_url} // Safe access
                           />
                         )}
                         {data?.data.spotify?.song && (
@@ -165,7 +165,25 @@ export default function Home() {
                     )}
                   </div>
                 </ModalBody>
-                <ModalFooter>
+                <ModalFooter className="flex flex-row justify-between">
+                  {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */}
+                  <div
+                    className="relative w-10 h-10 rounded-md border-none transition-transform duration-300 hover:cursor-pointer hover:scale-110 overflow-hidden"
+                    onClick={() =>
+                      window.open(
+                        `https://open.spotify.com/track/${data?.data.spotify?.track_id}`,
+                        "_blank"
+                      )
+                    }
+                  >
+                    <img
+                      alt="a gif of a cat jamming to the music."
+                      className="w-full h-full"
+                      src="/assets/cat-jam.gif"
+                    />
+                    <span className="absolute inset-0 bg-gradient-to-tr from-transparent to-primary opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+
                   <Button
                     className="text-white"
                     color="primary"
@@ -189,7 +207,6 @@ export default function Home() {
             >
               <Tooltip
                 color="primary"
-                placement="bottom"
                 content={
                   data.data.activities[0] && (
                     <div className="flex flex-col text-white items-center justify-center text-center p-2">
@@ -222,6 +239,7 @@ export default function Home() {
                     </div>
                   )
                 }
+                placement="bottom"
                 showArrow={false}
               >
                 <Avatar

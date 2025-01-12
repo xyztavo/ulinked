@@ -31,11 +31,11 @@
     "framer-motion": "^11.3.21",
     "intl-messageformat": "^10.5.0",
     "lucide-react": "^0.424.0",
-    "next": "14.2.4",
+    "next": "^15.0.0-rc.1",
     "next-themes": "^0.2.1",
     "next-video": "^1.1.4",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "^19.0.0-rc.1",
+    "react-dom": "^19.0.0-rc.1",
     "swr": "^2.2.5"
   },
   "devDependencies": {
