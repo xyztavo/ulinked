@@ -212,34 +212,27 @@ export default function Home() {
               <Tooltip
                 color="primary"
                 content={
-                  data.data.activities[0] && (
+                  data.data.activities.length > 0 && (
                     <div className="flex flex-col text-white items-center justify-center text-center p-2">
-                      <h1 className="text-center">
-                        Currently on:{" "}
-                        <span className="font-bold">
-                          {data.data.activities[data.data.activities.length - 1]
-                            .name &&
-                            data.data.activities[
-                              data.data.activities.length - 1
-                            ].name}
-                        </span>
-                      </h1>
-                      <div className="text-sm flex flex-col">
-                        <h2>
-                          {data.data.activities[data.data.activities.length - 1]
-                            .state &&
-                            data.data.activities[
-                              data.data.activities.length - 1
-                            ].state}
-                        </h2>
-                        <h2>
-                          {data.data.activities[data.data.activities.length - 1]
-                            .details &&
-                            data.data.activities[
-                              data.data.activities.length - 1
-                            ].details}
-                        </h2>
-                      </div>
+                      {data.data.activities
+                        .filter(
+                          (activity) =>
+                            activity.name &&
+                            !activity.name.includes("Spotify") &&
+                            !activity.name.includes("Custom Status")
+                        )
+                        .map((activity, index) => (
+                          <div key={index} className="mb-2">
+                            <h1 className="text-center">
+                              Currently on:{" "}
+                              <span className="font-bold">{activity.name}</span>
+                            </h1>
+                            <div className="text-sm flex flex-col">
+                              {activity.state && <h2>{activity.state}</h2>}
+                              {activity.details && <h2>{activity.details}</h2>}
+                            </div>
+                          </div>
+                        ))}
                     </div>
                   )
                 }
