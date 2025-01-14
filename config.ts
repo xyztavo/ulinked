@@ -11,7 +11,7 @@ const config: Config = {
   buttons: [
     {
       title: "My Gym App",
-      link: "https://github.com/xyztavo",
+      link: "https://go-gym-ui.vercel.app/",
     },
     {
       title: "My Pokemon Game",
