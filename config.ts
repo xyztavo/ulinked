@@ -6,7 +6,7 @@ const config: Config = {
     active: true, /* if you don't wish to expose your Discord activities with lanyard, set to false */
     discordId: "801073563368947742",
   },
-  accentColor: "#4c02b5",
+  accentColor: "#7300ff",
   avatarImgSrc: "/assets/profile.png",
   buttons: [
     {

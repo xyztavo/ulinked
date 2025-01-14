@@ -66,12 +66,12 @@ export default function Album() {
         </ModalContent>
       </Modal>
       <div className="flex flex-row gap-6">
-        <Button isIconOnly onPress={() => window.location.replace("/")}>
+        <Button isIconOnly onPress={() => window.location.replace("/")} className="bg-transparent hover:bg-primary shadow-custom">
           <ArrowLeftCircleIcon />
         </Button>
         <ThemeSwitch />
-        <Button isIconOnly color="secondary" onPress={onOpen}>
-          <Camera />
+        <Button isIconOnly color="secondary" className="bg-transparent hover:bg-primary shadow-custom text-foreground" onPress={onOpen}>
+          <Camera  />
         </Button>
       </div>
       <div className="flex flex-col items-center justify-center gap-4">
