@@ -1,5 +1,5 @@
 export type SiteConfig = typeof siteConfig;
-import * as config from "../config.json";
+import  config from "../config";
 
 export const siteConfig = {
   name: config.nickname + " bio",

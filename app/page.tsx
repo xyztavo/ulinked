@@ -16,8 +16,8 @@ import axios from "axios";
 import { Badge } from "@nextui-org/badge";
 import { Tooltip } from "@nextui-org/tooltip";
 
-import * as gallery from "../config.gallery.json";
-import * as config from "../config.json";
+import gallery from "../config.gallery";
+import config from "../config";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 import { DiscordIcon, SpotifyIcon } from "@/components/icons";
@@ -110,13 +110,13 @@ export default function Home() {
               isIconOnly
               className="shadow-custom hover:text-white bg-transparent hover:bg-primary"
               size="sm"
-              onClick={onSpotifyOpen}
+              onPress={onSpotifyOpen}
             >
               <Music className="p-1" />
             </Button>
             <Button
               className="shadow-custom bg-transparent hover:bg-primary max-w-60 text-foreground"
-              onClick={onSpotifyOpen} // This will trigger opening the modal
+              onPress={onSpotifyOpen} // This will trigger opening the modal
             >
               {data.data.spotify.song && <>{data.data.spotify.song}</>}
             </Button>
@@ -191,7 +191,7 @@ export default function Home() {
                   <Button
                     className="text-white"
                     color="primary"
-                    onClick={onClose}
+                    onPress={onClose}
                   >
                     Close
                   </Button>
@@ -270,7 +270,7 @@ export default function Home() {
         <Button
           isIconOnly
           className="shadow-custom hover:text-white bg-transparent hover:bg-primary"
-          onClick={onOpen}
+          onPress={onOpen}
         >
           <Camera />
         </Button>
@@ -310,7 +310,7 @@ export default function Home() {
                 <Button
                   className="text-white"
                   color="primary"
-                  onClick={onClose}
+                  onPress={onClose}
                 >
                   Close
                 </Button>
@@ -325,7 +325,7 @@ export default function Home() {
             key={button.link}
             className="text-foreground hover:text-white hover:bg-primary bg-transparent w-64 shadow-custom"
             size="lg"
-            onClick={() => window.open(button.link, "_blank")}
+            onPress={() => window.open(button.link, "_blank")}
           >
             {button.title}
           </Button>
@@ -337,7 +337,7 @@ export default function Home() {
             isIconOnly
             className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-slate-800"
             size="sm"
-            onClick={() => window.open(config.githubLink, "_blank")}
+            onPress={() => window.open(config.githubLink, "_blank")}
           >
             <Github />
           </Button>
@@ -347,7 +347,7 @@ export default function Home() {
             isIconOnly
             className="relative text-foreground bg-transparent hover:text-white shadow-custom overflow-hidden rounded-md transition-all duration-300 group"
             size="sm"
-            onClick={() => window.open(config.instagramLink, "_blank")}
+            onPress={() => window.open(config.instagramLink, "_blank")}
           >
             {/* Gradient background */}
             <span className="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -362,7 +362,7 @@ export default function Home() {
             isIconOnly
             className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#7289da]"
             size="sm"
-            onClick={() => window.open(config.discordLink, "_blank")}
+            onPress={() => window.open(config.discordLink, "_blank")}
           >
             <DiscordIcon />
           </Button>
@@ -372,7 +372,7 @@ export default function Home() {
             isIconOnly
             className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#0e76a8]"
             size="sm"
-            onClick={() => window.open(config.linkedInLink, "_blank")}
+            onPress={() => window.open(config.linkedInLink, "_blank")}
           >
             <Linkedin />
           </Button>
@@ -382,7 +382,7 @@ export default function Home() {
             isIconOnly
             className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#da1a1a]"
             size="sm"
-            onClick={() => window.open(config.ytMusicLink, "_blank")}
+            onPress={() => window.open(config.ytMusicLink, "_blank")}
           >
             <Music />
           </Button>
@@ -392,7 +392,7 @@ export default function Home() {
             isIconOnly
             className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#1DB954]"
             size="sm"
-            onClick={() => window.open(config.spotifyLink, "_blank")}
+            onPress={() => window.open(config.spotifyLink, "_blank")}
           >
             <SpotifyIcon />
           </Button>

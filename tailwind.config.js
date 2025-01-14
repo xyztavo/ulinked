@@ -1,5 +1,5 @@
 import {nextui} from '@nextui-org/theme'
-import * as config from './config.json'
+import config from './config'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
