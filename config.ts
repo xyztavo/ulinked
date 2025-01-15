@@ -15,7 +15,7 @@ const config: Config = {
     },
     {
       title: "My Pokemon Game",
-      link: "https://pokedoro-next.vercel.app/",
+      link: "https://pokedoro.vercel.app/",
     },
     {
       title: "My Projects",
