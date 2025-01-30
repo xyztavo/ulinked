@@ -12,6 +12,7 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 import Video from "next-video";
+import Image from 'next/image';
 
 import gallery from "../../config.gallery";
 import config from "../../config";
@@ -25,7 +26,7 @@ export default function Album() {
     (album) => album.route === params.albumRoute
   );
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  
+
   return (
     <div className="flex flex-col gap-4 z-40">
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -41,10 +42,13 @@ export default function Album() {
                     href={album.route}
                     whileHover={{ scale: 1.3, zIndex: 10 }}
                   >
-                    <img
+                    <Image
                       alt="album cover"
-                      className="w-32 h-32 rounded-t-md border-2 border-foreground-300"
+                      className="rounded-t-md border-2 border-foreground-300"
+                      width={128}
+                      height={128}
                       src={album.coverImageSrc}
+                      priority
                     />
                     <Button className="w-full rounded-b-lg" radius="none">
                       {album.title}
@@ -71,7 +75,7 @@ export default function Album() {
         </Button>
         <ThemeSwitch />
         <Button isIconOnly color="secondary" className="bg-transparent hover:bg-primary shadow-custom text-foreground" onPress={onOpen}>
-          <Camera  />
+          <Camera />
         </Button>
       </div>
       <div className="flex flex-col items-center justify-center gap-4">
@@ -86,7 +90,7 @@ export default function Album() {
                 isOpen: isImageOpen,
                 onOpen: onImageOpen,
                 onOpenChange: onImageOpenChange,
-              // eslint-disable-next-line react-hooks/rules-of-hooks
+                // eslint-disable-next-line react-hooks/rules-of-hooks
               } = useDisclosure();
 
               return (
@@ -114,9 +118,10 @@ export default function Album() {
                                 src={image.videoSrc}
                               />
                             ) : (
-                              <img
+                              <Image
                                 alt={"image of " + image.title}
                                 src={image.src}
+                                priority
                               />
                             )}
                           </ModalBody>
@@ -133,7 +138,10 @@ export default function Album() {
                       )}
                     </ModalContent>
                   </Modal>
-                  <img alt="" className="w-60 rounded-md " src={image.src} />
+                  <Image alt=""
+                    width={240}
+                    height={240}
+                    className="rounded-md " src={image.src} priority />
                   <h1 className="mt-[-1.5rem] rounded-md text-white font-bold bg-gradient-to-t from-black to-transparent w-full text-center">
                     {image.title}
                   </h1>

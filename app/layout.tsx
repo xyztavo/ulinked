@@ -7,6 +7,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontGothic } from "@/config/fonts";
 
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
