@@ -121,6 +121,8 @@ export default function Album() {
                               <Image
                                 alt={"image of " + image.title}
                                 src={image.src}
+                                width={240}
+                                height={240}
                                 priority
                               />
                             )}
