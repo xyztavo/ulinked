@@ -9,6 +9,7 @@ export interface Config {
   linkedInLink?: string;
   discordLink?: string;
   ytMusicLink?: string;
+  youtubeLink?: string;
   spotifyLink?: string;
   footer: string;
 }

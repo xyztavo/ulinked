@@ -1,5 +1,5 @@
 "use client";
-import { Camera, Github, Instagram, Linkedin, Music } from "lucide-react";
+import { Camera, Github, Instagram, Linkedin, Music, Youtube, YoutubeIcon } from "lucide-react";
 import { Button } from "@nextui-org/button";
 import {
   Modal,
@@ -386,7 +386,7 @@ export default function Home() {
           {config.discordLink && (
             <Button
               isIconOnly
-              className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#7289da]"
+              className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#5865F2]"
               size="sm"
               onPress={() => window.open(config.discordLink, "_blank")}
             >
@@ -421,6 +421,16 @@ export default function Home() {
               onPress={() => window.open(config.spotifyLink, "_blank")}
             >
               <SpotifyIcon />
+            </Button>
+          )}
+             {config.youtubeLink && (
+            <Button
+              isIconOnly
+              className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#c4302b]"
+              size="sm"
+              onPress={() => window.open(config.youtubeLink, "_blank")}
+            >
+              <YoutubeIcon />
             </Button>
           )}
         </div>
