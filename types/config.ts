@@ -1,4 +1,5 @@
 export interface Config {
+  blog: boolean;
   nickname: string;
   lanyard: Lanyard;
   accentColor: string;

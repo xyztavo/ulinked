@@ -1,6 +1,7 @@
 import { Config } from "./types/config";
 
 const config: Config = {
+  blog: false,
   nickname: "ustav",
   lanyard: {
     active: true, /* if you don't wish to expose your Discord activities with lanyard, set to false */

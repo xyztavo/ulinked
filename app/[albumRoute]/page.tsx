@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
-import { Button } from "@nextui-org/button";
+import { Button } from "@heroui/button";
 import { ArrowLeftCircleIcon, Camera, PlayCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import {
@@ -10,7 +10,7 @@ import {
   ModalFooter,
   ModalHeader,
   useDisclosure,
-} from "@nextui-org/modal";
+} from "@heroui/modal";
 import Video from "next-video";
 import Image from 'next/image';
 
