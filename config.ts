@@ -28,7 +28,7 @@ const config: Config = {
   ],
   githubLink: "https://github.com/xyztavo",
   instagramLink: "https://www.instagram.com/luna.gustah/",
-  linkedInLink: "", // https://www.linkedin.com/in/gustavo-luna-6a33942aa/
+  linkedInLink: "https://www.linkedin.com/in/gustavo-luna-6a33942aa/",
   discordLink: "https://discord.com/users/801073563368947742",
   ytMusicLink: "", /* if you don't wish the button to appear, you can either leave it blank or omit it */
   youtubeLink: "https://www.youtube.com/@ustav_o",
