@@ -3,7 +3,7 @@ import { Config } from "./types/config";
 const config: Config = {
   options: {
     blog: true,
-    gallery: true, // this will only hide the gallery page, you can still access it by going to its respective routes.
+    gallery: false, // this will only hide the gallery page, you can still access it by going to its respective routes.
   },
   nickname: "ustav",
   lanyard: {
