@@ -236,16 +236,19 @@ export default function Linktree() {
                     )}
                     <h1 className="text-2xl">{config.nickname}</h1>
                 </div>
-                <div className="flex flex-row gap-4 justify-center items-center">
-                    <Button
-                        isIconOnly
-                        className="shadow-custom hover:text-white bg-transparent hover:bg-primary"
-                        onPress={onOpen}
-                    >
-                        <Camera />
-                    </Button>
-                    <ThemeSwitch />
-                </div>
+                {/* Gallery and theme switch */}
+                {config.options.gallery && ( 
+                     <div className="flex flex-row gap-4 justify-center items-center">
+                     <Button
+                         isIconOnly
+                         className="shadow-custom hover:text-white bg-transparent hover:bg-primary"
+                         onPress={onOpen}
+                     >
+                         <Camera />
+                     </Button>
+                     <ThemeSwitch />
+                 </div>
+                )}
                 {/* albuns modal */}
                 <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                     <ModalContent>

@@ -1,5 +1,7 @@
+import { i } from "framer-motion/client";
+
 export interface Config {
-  blog: boolean;
+  options: Options;
   nickname: string;
   lanyard: Lanyard;
   accentColor: string;
@@ -23,4 +25,9 @@ interface Button {
 interface Lanyard {
   active: boolean;
   discordId: string;
+}
+
+interface Options {
+  gallery: boolean,
+  blog: boolean,
 }

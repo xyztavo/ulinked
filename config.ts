@@ -1,7 +1,10 @@
 import { Config } from "./types/config";
 
 const config: Config = {
-  blog: false,
+  options: {
+    blog: true,
+    gallery: true, // this will only hide the gallery page, you can still access it by going to its respective routes.
+  },
   nickname: "ustav",
   lanyard: {
     active: true, /* if you don't wish to expose your Discord activities with lanyard, set to false */
