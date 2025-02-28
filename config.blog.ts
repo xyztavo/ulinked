@@ -5,7 +5,7 @@ const blog: Blog = {
     posts: [
         {
             title: "Fullstack Developer",
-            description: "I'm a brazilian dev and write the worst piece of code you've ever seen 🚀.",
+            description: "I'm a brazilian dev and i write the worst piece of code you've ever seen 🚀.",
             footer: "i mostly work with Nextjs and GO",
         },
         {
