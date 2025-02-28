@@ -1,8 +1,8 @@
 "use client";
 
-import Blog from "@/components/blog";
-import Linktree from "@/components/linktree";
-import config from "@/config";
+import Blog from "@/components/app/blog";
+import Footer from "@/components/app/footer";
+import Linktree from "@/components/app/linktree";
 import React from "react";
 
 
@@ -14,7 +14,7 @@ export default function Home() {
         <Linktree />
         <Blog />
       </div>
-      <h2 className="my-10 text-zinc-400 text-center">{config.footer}</h2>
+      <Footer />
     </div>
   );
 }

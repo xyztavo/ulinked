@@ -17,8 +17,8 @@ import { Badge } from "@heroui/badge";
 import { Tooltip } from "@heroui/tooltip";
 import Head from "next/head";
 
-import gallery from "../config.gallery";
-import config from "../config";
+import gallery from "../../config.gallery";
+import config from "../../config";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 import { DiscordIcon, SpotifyIcon } from "@/components/icons";
