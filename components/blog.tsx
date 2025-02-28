@@ -6,7 +6,7 @@ import blog from "@/config.blog"
 export default function Blog() {
     return (
         <div className="flex flex-col gap-2">
-            {blog.title ? <h2 className="text-2xl text-default-900 text-center">{blog.title}</h2> : <>set blog to false in config.ts if you dont wish to use it.</>}
+            {blog.title && config.options.blog && <h2 className="text-2xl text-default-900 text-center">{blog.title}</h2>}
             {config.options.blog && <div className="flex flex-col items-center justify-center gap-4">
                 {blog.posts != null && blog.posts.map((post, i) => (
                     <Card className="max-w-[300px]" key={i}>
