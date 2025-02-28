@@ -382,7 +382,6 @@ export default function Linktree() {
                         </Button>
                     )}
                 </div>
-                <h2>{config.footer}</h2>
             </div>
         </>
     )
