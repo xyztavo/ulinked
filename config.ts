@@ -14,12 +14,12 @@ const config: Config = {
   avatarImgSrc: "/assets/profile.png",
   buttons: [
     {
-      title: "My Gym App",
-      link: "https://ugogym.vercel.app/",
+      title: "My Car Edits",
+      link: "https://www.youtube.com/@ustav_o/featured",
     },
     {
-      title: "My Pokemon Game",
-      link: "https://pokedoro.vercel.app/",
+      title: "My Instagram",
+      link: "https://www.instagram.com/luna.gustah/",
     },
     {
       title: "My Projects",
