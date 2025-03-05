@@ -30,7 +30,7 @@
     "@react-aria/visually-hidden": "3.8.12",
     "axios": "^1.8.1",
     "clsx": "2.1.1",
-    "framer-motion": "^12.4.9",
+    "framer-motion": "^12.4.10",
     "intl-messageformat": "^10.7.15",
     "lucide-react": "^0.424.0",
     "next": "14.2.4",

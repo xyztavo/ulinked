@@ -79,12 +79,13 @@ export default function Album() {
         </Button>
       </div>
       <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-2xl">{params.albumRoute}</h1>
+
         {results.map((album, i) => (
           <div
             key={i}
             className="flex flex-row flex-wrap items-center justify-center gap-8"
           >
+            <h1 className="text-2xl">{album.title}</h1>
             {album.posts.map((image, i) => {
               const {
                 isOpen: isImageOpen,
