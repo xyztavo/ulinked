@@ -83,9 +83,10 @@ export default function Album() {
         {results.map((album, i) => (
           <div
             key={i}
-            className="flex flex-row flex-wrap items-center justify-center gap-8"
+            className="flex flex-col gap-2 items-center justify-center"
           >
             <h1 className="text-2xl">{album.title}</h1>
+            <div className="flex flex-row flex-wrap items-center justify-center gap-8">
             {album.posts.map((image, i) => {
               const {
                 isOpen: isImageOpen,
@@ -154,6 +155,7 @@ export default function Album() {
                 </motion.div>
               );
             })}
+            </div>
           </div>
         ))}
       </div>
