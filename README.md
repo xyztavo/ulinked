@@ -1,5 +1,5 @@
 # based linktree
-- uses next ui 
+- uses hero ui 
 - [config file](https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/config.json)
 - has album to show pics n videos
 - supports discord activities through [lanyard](https://github.com/Phineas/lanyard)

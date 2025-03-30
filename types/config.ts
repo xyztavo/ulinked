@@ -1,5 +1,3 @@
-import { i } from "framer-motion/client";
-
 export interface Config {
   options: Options;
   nickname: string;
