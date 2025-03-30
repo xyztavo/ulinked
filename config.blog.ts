@@ -1,17 +1,17 @@
 import { Blog } from "./types/config.blog"
 
 const blog: Blog = {
-    title: "blog",
+    title: "about me",
     posts: [
         {
-            title: "Fullstack Developer",
-            description: "I'm a brazilian dev and i write the worst piece of code you've ever seen 🚀.",
+            title: "i'm a fullstack developer",
+            description: "I'm a brazilian dev and i write the worst piece of code you'll ever see 🚀.",
             footer: "i mostly work with Nextjs and GO",
         },
         {
-            title: "My hobbies",
-            description: "I'm a coding enthusiast, but I'm also into chemistry, systems development, gaming, and watching cool stuff. I even do some video editing on the side (check out my car edits on my youtube).",
-            footer: "rn mainly playing LoL and watching dexter",
+            title: "... but also a editor",
+            description: `i like to edit and film some cool cars and make some "cool" stuff with it 🔥.`,
+            footer: "i mostly work with Premiere and After Effects",
         },
     ],
 }

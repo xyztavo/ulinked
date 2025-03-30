@@ -14,24 +14,24 @@ const config: Config = {
   avatarImgSrc: "/assets/profile.png",
   buttons: [
     {
-      title: "My Car Edits",
+      title: "edits - youtube",
       link: "https://www.youtube.com/@ustav_o/featured",
     },
     {
-      title: "My Instagram",
+      title: "edits - instagram",
       link: "https://www.instagram.com/ustav.go/",
     },
     {
-      title: "My Projects",
+      title: "my projects",
       link: "https://uprojects.vercel.app/",
     },
     {
-      title: "See this project code",
+      title: "github for this repo",
       link: "https://github.com/xyztavo/ulinked",
     },
   ],
   githubLink: "https://github.com/xyztavo",
-  instagramLink: "https://www.instagram.com/ustav.go/",
+  instagramLink: "https://www.instagram.com/luna.ustav/",
   linkedInLink: "https://www.linkedin.com/in/gustavo-luna-6a33942aa/",
   discordLink: "https://discord.com/users/801073563368947742",
   ytMusicLink: "", /* if you don't wish the button to appear, you can either leave it blank or omit it */
