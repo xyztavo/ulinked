@@ -23,6 +23,7 @@ import config from "../../config";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { DiscordIcon, SpotifyIcon } from "@/components/icons";
 import { LanyardData } from "@/types/lanyard-data";
+import Footer from "./footer";
 export interface Response {
     data: LanyardData;
     success: boolean;
@@ -382,6 +383,7 @@ export default function Linktree() {
                         </Button>
                     )}
                 </div>
+                {!config.options.blog && <Footer />}
             </div>
         </>
     )
