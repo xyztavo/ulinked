@@ -18,7 +18,7 @@ export function AlbumsModal({
   onOpenChange: (isOpen: boolean) => void;
 }) {
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="font-mono">
       <ModalContent>
         {(onClose) => (
           <>

@@ -11,10 +11,9 @@ import {
 } from "@heroui/modal";
 import { LanyardResponse } from "./linktree";
 import { Music } from "lucide-react";
+import { fontGothic } from "@/config/fonts";
 
-
-
-export function Spotify({ data }: { data?: LanyardResponse  }) {
+export function Spotify({ data }: { data?: LanyardResponse }) {
   const {
     isOpen: isSpotifyOpen,
     onOpen: onSpotifyOpen,
@@ -23,6 +22,7 @@ export function Spotify({ data }: { data?: LanyardResponse  }) {
 
   return (
     <>
+      {/* spotify trigger */}
       {data?.data.spotify && config.lanyard && (
         <div className="flex flex-row items-center justify-center gap-2">
           <Button
@@ -42,11 +42,11 @@ export function Spotify({ data }: { data?: LanyardResponse  }) {
         </div>
       )}
       {/* spotify modal */}
-      <Modal isOpen={isSpotifyOpen} onOpenChange={onSpotifyOpenChange}>
+      <Modal isOpen={isSpotifyOpen} onOpenChange={onSpotifyOpenChange} className="font-mono">
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
+              <ModalHeader>
                 Currently Playing on Spotify
                 {/* https://open.spotify.com/track/3JQUIVHsxgnMAyXqbZU5zO */}
               </ModalHeader>
