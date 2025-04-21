@@ -7,7 +7,6 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontGothic } from "@/config/fonts";
 
-
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -34,22 +33,20 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head />
-      <body
-        className={clsx("min-h-screen bg-background antialiased font-mono")}
-      >
+      <body>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col min-h-screen">
+          <div className="relative bg-background antialiased font-mono flex flex-col min-h-screen"> 
             {/* Background */}
             <div className="absolute inset-0 bg-[url('/assets/static.gif')] bg-repeat opacity-5 pointer-events-none z-0" />
-              {/* Main Content */}
-              <main
-                className={
-                  "relative z-10 container mx-auto max-w-7xl pt-16 px-6 flex-grow " +
-                  fontGothic.className
-                }
-              >
-                {children}
-              </main>
+            {/* Main Content */}
+            <main
+              className={
+                "flex items-center justify-center z-10  m-auto pt-16 md:pt-0 flex-grow " +
+                fontGothic.className
+              }
+            >
+              {children}
+            </main>
           </div>
         </Providers>
       </body>

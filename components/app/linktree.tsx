@@ -85,7 +85,7 @@ export default function Linktree() {
           {config.buttons.map((button) => (
             <Button
               key={button.link}
-              className="text-foreground hover:text-white hover:bg-primary bg-transparent w-64 shadow-custom"
+              className="text-foreground hover:text-white w-64 hover:bg-primary bg-transparent shadow-custom border border-foreground/15"
               size="lg"
               onPress={() => window.open(button.link, "_blank")}
             >
