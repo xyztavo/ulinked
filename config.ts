@@ -1,8 +1,8 @@
-import { Config } from "./types/config";
+import { ConfigProps } from "./types/config";
 
-const config: Config = {
+const config: ConfigProps = {
   options: {
-    blog: true,
+    blog: false,
     gallery: true, // this will only hide the gallery page, you can still access it by going to its respective routes.
   },
   nickname: "ustav",

@@ -1,10 +1,10 @@
-import { Album } from "./types/config.gallery";
+import { GalleryProps } from "./types/config.gallery";
 
-const gallery: { albums: Album[] } = {
+const gallery: GalleryProps = {
   albums: [
     {
-      title: "me",
-      route: "me",
+      title: "yo",
+      route: "yo",
       coverImageSrc:
         "/assets/me/me-cover.png",
       posts: [

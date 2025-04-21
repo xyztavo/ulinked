@@ -1,4 +1,4 @@
-export interface Config {
+export interface ConfigProps {
   options: Options;
   nickname: string;
   lanyard: Lanyard;
@@ -12,6 +12,8 @@ export interface Config {
   ytMusicLink?: string;
   youtubeLink?: string;
   spotifyLink?: string;
+  whatsAppLink?: string;
+  mailLink?: string;
   footer: string;
 }
 

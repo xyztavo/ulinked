@@ -1,11 +1,16 @@
-export interface Album {
+export interface GalleryProps {
+  albums: AlbumProps[];
+}
+
+
+export interface AlbumProps {
   title: string;
   route: string;
   coverImageSrc: string;
-  posts: Post[];
+  posts: PostProps[];
 }
 
-interface Post {
+interface PostProps {
   title: string;
   src: string;
   videoSrc?: string; // optional

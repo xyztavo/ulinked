@@ -1,4 +1,4 @@
-export interface Blog {
+export interface BlogProps {
     title?: string;
     posts?: Post[];
 }

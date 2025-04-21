@@ -1,6 +1,6 @@
-import { Blog } from "./types/config.blog"
+import { BlogProps } from "./types/config.blog"
 
-const blog: Blog = {
+const blog: BlogProps = {
     title: "about me",
     posts: [
         {
