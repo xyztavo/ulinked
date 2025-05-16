@@ -5,13 +5,13 @@ const blog: BlogProps = {
     posts: [
         {
             title: "i'm a fullstack developer",
-            description: "I'm a brazilian dev and i write the worst piece of code you'll ever see 🚀.",
+            description: "I'm a brazilian dev and i'll write the worst piece of code you'll ever see 🚀.",
             footer: "i mostly work with Nextjs and GO",
         },
         {
             title: "... but also a editor",
-            description: `i like to edit and film some cool cars and make some "cool" stuff with it 🔥.`,
-            footer: "i mostly work with Premiere and After Effects",
+            description: `i also like to film some cool cars and make some "cool" edits with it 🔥.`,
+            footer: "i work with Premiere and After Effects",
         },
     ],
 }
