@@ -31,14 +31,6 @@ const gallery: GalleryProps = {
         {
           title: "6",
           src: "/assets/me/6.png",
-        },
-        {
-          title: "7",
-          src: "/assets/me/7.png",
-        },
-        {
-          title: "8",
-          src: "/assets/me/8.png",
           videoSrc: "", /* if you wish to use a video, pass it right here, this one can be omitted if you dont wish to */
         },
       ],
