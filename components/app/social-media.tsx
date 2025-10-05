@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { Button } from "@heroui/button";
 
-import { DiscordIcon, SpotifyIcon } from "@/components/icons/icons";
+import { DiscordIcon, SpotifyIcon, TiktokIcon } from "@/components/icons/icons";
 import config from "@/config";
 
 export default function SocialMedia() {
@@ -36,6 +36,20 @@ export default function SocialMedia() {
           {/* Icon content */}
           <span className="relative z-10">
             <Instagram />
+          </span>
+        </Button>
+      )}
+      {config.tiktokLink && (
+        <Button
+          isIconOnly
+          className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-black"
+          size="sm"
+          onPress={() => window.open(config.tiktokLink, "_blank")}
+        >
+          <span className="absolute inset-0 bg-gradient-to-l from-pink-600 to-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          {/* Icon content */}
+          <span className="relative z-10">
+            <TiktokIcon />
           </span>
         </Button>
       )}
@@ -89,7 +103,7 @@ export default function SocialMedia() {
           <YoutubeIcon />
         </Button>
       )}
-       {config.whatsAppLink && (
+      {config.whatsAppLink && (
         <Button
           isIconOnly
           className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#25d366]"

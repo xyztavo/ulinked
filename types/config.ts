@@ -7,6 +7,7 @@ export interface ConfigProps {
   buttons: Button[];
   githubLink?: string;
   instagramLink?: string;
+  tiktokLink?: string;
   linkedInLink?: string;
   discordLink?: string;
   ytMusicLink?: string;
