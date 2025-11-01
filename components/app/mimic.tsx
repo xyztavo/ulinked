@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import config from "@/config";
 import { UmimicConfig } from "@/config.umimic";
 import { Button } from "@heroui/button";
@@ -15,6 +15,7 @@ import {
 import { Input } from "@heroui/react";
 import axios from "axios";
 import { Stars } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 type UmimicResponse = {
   reply: string;
@@ -31,6 +32,7 @@ export function UMimic(): JSX.Element {
     onOpen: onMimicOpen,
     onOpenChange: onMimicOpenChange,
   } = useDisclosure();
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -106,6 +108,10 @@ export function UMimic(): JSX.Element {
     }
   };
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
+
   return (
     <>
       {/* mimic trigger */}
@@ -152,7 +158,24 @@ export function UMimic(): JSX.Element {
                           : "bg-default-100 text-foreground"
                       }`}
                     >
-                      {m.text}
+                      {m.from === "bot" ? (
+                        <ReactMarkdown
+                          components={{
+                            a: ({ node, ...props }) => (
+                              <a
+                                {...props}
+                                className="text-primary underline hover:opacity-80"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              />
+                            ),
+                          }}
+                        >
+                          {m.text}
+                        </ReactMarkdown>
+                      ) : (
+                        m.text
+                      )}
                     </div>
                   </div>
                 ))}
@@ -162,6 +185,7 @@ export function UMimic(): JSX.Element {
                     {config.nickname} está digitando...
                   </div>
                 )}
+                <div ref={messagesEndRef} />
               </ModalBody>
 
               <ModalFooter className="flex flex-row gap-2">
