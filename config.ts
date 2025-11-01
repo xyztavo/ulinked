@@ -4,6 +4,7 @@ const config: ConfigProps = {
   options: {
     blog: true,
     gallery: true, // this will only hide the gallery page, you can still access it by going to its respective routes.
+    umimic: true, // this is for the ai chatbot that mimics you
   },
   nickname: "ustav",
   lanyard: {

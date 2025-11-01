@@ -1,5 +1,5 @@
 "use client";
-import { Camera } from "lucide-react";
+import { Camera, Stars } from "lucide-react";
 import { Button } from "@heroui/button";
 import { useDisclosure } from "@heroui/modal";
 import useSWR from "swr";
@@ -15,6 +15,7 @@ import { AlbumsModal } from "./albums-modal";
 import SocialMedia from "./social-media";
 import { Spotify } from "./spotify";
 import { BadgeAvatar } from "./badge-avatar";
+import { UMimic } from "./mimic";
 
 export interface LanyardResponse {
   data: LanyardData;
@@ -62,8 +63,12 @@ export default function Linktree() {
         <Spotify data={data} />
         {/* avatar and status */}
         <BadgeAvatar data={data} />
-        {/* Gallery and theme switch */}
+        {/* Mimic, Gallery and theme switch */}
         <div className="flex flex-row gap-4 justify-center items-center">
+           {/* AI Mimic Button */}
+          {config.options.umimic && (
+            <UMimic />
+          )}
           {config.options.gallery && (
             <Button
               isIconOnly
@@ -76,10 +81,7 @@ export default function Linktree() {
           <ThemeSwitch />
         </div>
         {/* albuns modal */}
-        <AlbumsModal
-          isOpen={isAlbumsOpen}
-          onOpenChange={onAlbumsOpenChange}
-        />
+        <AlbumsModal isOpen={isAlbumsOpen} onOpenChange={onAlbumsOpenChange} />
         {/* Buttons */}
         <div className="flex flex-col gap-6">
           {config.buttons.map((button) => (

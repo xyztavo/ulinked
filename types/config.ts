@@ -31,4 +31,5 @@ interface Lanyard {
 interface Options {
   gallery: boolean,
   blog: boolean,
+  umimic: boolean,
 }

@@ -1,0 +1,165 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import config from "@/config";
+import { UmimicConfig } from "@/config.umimic";
+import { Button } from "@heroui/button";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@heroui/modal";
+import { Input } from "@heroui/react";
+import axios from "axios";
+import { Stars } from "lucide-react";
+
+type UmimicResponse = {
+  reply: string;
+};
+
+type ChatMessage = {
+  from: "user" | "bot";
+  text: string;
+};
+
+export function UMimic(): JSX.Element {
+  const {
+    isOpen: isMimicOpen,
+    onOpen: onMimicOpen,
+    onOpenChange: onMimicOpenChange,
+  } = useDisclosure();
+
+  const [message, setMessage] = useState<string>("");
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // Carrega mensagens salvas no localStorage (executa só no cliente)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = localStorage.getItem("umimic_messages");
+    if (stored) {
+      try {
+        setMessages(JSON.parse(stored) as ChatMessage[]);
+      } catch {
+        localStorage.removeItem("umimic_messages");
+      }
+    }
+  }, []);
+
+  // Salva mensagens no localStorage sempre que mudam
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    localStorage.setItem("umimic_messages", JSON.stringify(messages));
+  }, [messages]);
+
+  const handleSend = async (): Promise<void> => {
+    if (!message.trim()) return;
+
+    const newMessages: ChatMessage[] = [
+      ...messages,
+      { from: "user", text: message },
+    ];
+
+    setMessages(newMessages);
+    setMessage("");
+    setLoading(true);
+
+    try {
+      const res = await axios.post<UmimicResponse>(
+        `${UmimicConfig.apiBaseUrl}/api/message`,
+        { message }
+      );
+
+      const botReply: ChatMessage = { from: "bot", text: res.data.reply };
+      setMessages([...newMessages, botReply]);
+    } catch (err) {
+      setMessages([
+        ...newMessages,
+        { from: "bot", text: "Erro ao responder 😅" },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      {/* mimic trigger */}
+      {config.options.umimic && (
+        <div className="flex flex-row items-center justify-center gap-2">
+          <Button
+            onPress={onMimicOpen}
+            isIconOnly
+            className="text-foreground hover:text-white hover:bg-primary bg-transparent shadow-custom"
+          >
+            <Stars />
+          </Button>
+        </div>
+      )}
+
+      {/* mimic modal */}
+      <Modal
+        isOpen={isMimicOpen}
+        onOpenChange={onMimicOpenChange}
+        className="font-mono"
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader>{config.nickname}</ModalHeader>
+              <ModalBody className="flex flex-col gap-3 max-h-[400px] overflow-y-auto">
+                {messages.length === 0 && (
+                  <div className="text-center text-gray-500 text-sm">
+                    Nenhuma conversa ainda 😶
+                  </div>
+                )}
+
+                {messages.map((m, i) => (
+                  <div
+                    key={i}
+                    className={`flex ${
+                      m.from === "user" ? "justify-end" : "justify-start"
+                    }`}
+                  >
+                    <div
+                      className={`rounded-2xl p-2 px-3 max-w-[80%] break-words ${
+                        m.from === "user"
+                          ? "bg-primary text-white"
+                          : "bg-default-100 text-foreground"
+                      }`}
+                    >
+                      {m.text}
+                    </div>
+                  </div>
+                ))}
+
+                {loading && (
+                  <div className="flex items-start text-sm text-gray-400">
+                    {config.nickname} está digitando...
+                  </div>
+                )}
+              </ModalBody>
+
+              <ModalFooter className="flex flex-row gap-2">
+                <Input
+                  placeholder="Digite algo..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleSend();
+                  }}
+                />
+                <Button color="primary" onPress={handleSend}>
+                  Enviar
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
