@@ -36,20 +36,31 @@ export function UMimic(): JSX.Element {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  // Carrega mensagens salvas no localStorage (executa só no cliente)
+  const defaultBotMessage: ChatMessage = {
+    from: "bot",
+    text: `Oi! Eu sou ${config.nickname}. Como posso te ajudar hoje? 🤖`,
+  };
+
+  // Load messages from localStorage
   useEffect(() => {
     if (typeof window === "undefined") return;
+
     const stored = localStorage.getItem("umimic_messages");
+
     if (stored) {
       try {
-        setMessages(JSON.parse(stored) as ChatMessage[]);
+        const parsed = JSON.parse(stored) as ChatMessage[];
+        setMessages(parsed.length > 0 ? parsed : [defaultBotMessage]);
       } catch {
         localStorage.removeItem("umimic_messages");
+        setMessages([defaultBotMessage]);
       }
+    } else {
+      setMessages([defaultBotMessage]);
     }
   }, []);
 
-  // Salva mensagens no localStorage sempre que mudam
+  // Save messages to localStorage whenever they change
   useEffect(() => {
     if (typeof window === "undefined") return;
     localStorage.setItem("umimic_messages", JSON.stringify(messages));
@@ -68,14 +79,24 @@ export function UMimic(): JSX.Element {
     setLoading(true);
 
     try {
+      // Prepare conversation history for backend
+      const history = newMessages.map((m) => ({
+        role: m.from === "user" ? "user" : "assistant",
+        content: m.text,
+      }));
+
       const res = await axios.post<UmimicResponse>(
         `${UmimicConfig.apiBaseUrl}/api/message`,
-        { message }
+        {
+          message,
+          history,
+        }
       );
 
       const botReply: ChatMessage = { from: "bot", text: res.data.reply };
       setMessages([...newMessages, botReply]);
     } catch (err) {
+      console.error(err);
       setMessages([
         ...newMessages,
         { from: "bot", text: "Erro ao responder 😅" },
