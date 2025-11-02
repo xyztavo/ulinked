@@ -32,6 +32,8 @@ export function UMimic(): JSX.Element {
     onOpen: onMimicOpen,
     onOpenChange: onMimicOpenChange,
   } = useDisclosure();
+
+  const messagesContainerRef = useRef<HTMLDivElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const [message, setMessage] = useState<string>("");
@@ -108,9 +110,23 @@ export function UMimic(): JSX.Element {
     }
   };
 
+  // ✅ Fixed scroll behavior for mobile
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, loading]);
+    if (!messagesContainerRef.current || !messagesEndRef.current) return;
+
+    const container = messagesContainerRef.current;
+    const isMobile = window.innerWidth < 768;
+
+    const timeout = setTimeout(() => {
+      const scrollBehavior = isMobile ? "auto" : "smooth";
+      messagesEndRef.current?.scrollIntoView({
+        behavior: scrollBehavior,
+        block: "end",
+      });
+    }, 100);
+
+    return () => clearTimeout(timeout);
+  }, [messages]);
 
   return (
     <>
@@ -137,7 +153,10 @@ export function UMimic(): JSX.Element {
           {(onClose) => (
             <>
               <ModalHeader>{config.nickname}</ModalHeader>
-              <ModalBody className="flex flex-col gap-3 max-h-[400px] overflow-y-auto">
+              <ModalBody
+                ref={messagesContainerRef}
+                className="flex flex-col gap-3 h-[60vh] sm:max-h-[400px] overflow-y-auto"
+              >
                 {messages.length === 0 && (
                   <div className="text-center text-gray-500 text-sm">
                     Nenhuma conversa ainda 😶
