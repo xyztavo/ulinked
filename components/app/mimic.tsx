@@ -177,6 +177,7 @@ export function UMimic(): JSX.Element {
                         m.text
                       )}
                     </div>
+                    <div ref={messagesEndRef} />
                   </div>
                 ))}
 
@@ -185,7 +186,6 @@ export function UMimic(): JSX.Element {
                     {config.nickname} está digitando...
                   </div>
                 )}
-                <div ref={messagesEndRef} />
               </ModalBody>
 
               <ModalFooter className="flex flex-row gap-2">
