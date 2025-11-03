@@ -153,58 +153,61 @@ export function UMimic(): JSX.Element {
           {(onClose) => (
             <>
               <ModalHeader>{config.nickname}</ModalHeader>
-              <ModalBody
-                ref={messagesContainerRef}
-                className="flex flex-col gap-3 h-[60vh] sm:max-h-[400px] overflow-y-auto"
-              >
-                {messages.length === 0 && (
-                  <div className="text-center text-gray-500 text-sm">
-                    Nenhuma conversa ainda 😶
-                  </div>
-                )}
+              <ModalBody className="h-[60vh] sm:max-h-[400px] overflow-y-auto">
+                <div
+                  ref={messagesContainerRef}
+                  className="flex flex-col gap-3 min-h-full"
+                >
+                  {messages.length === 0 && (
+                    <div className="text-center text-gray-500 text-sm">
+                      Nenhuma conversa ainda 😶
+                    </div>
+                  )}
 
-                {messages.map((m, i) => (
-                  <div
-                    key={i}
-                    className={`flex ${
-                      m.from === "user" ? "justify-end" : "justify-start"
-                    }`}
-                  >
+                  {messages.map((m, i) => (
                     <div
-                      className={`rounded-2xl p-2 px-3 max-w-[80%] break-words ${
-                        m.from === "user"
-                          ? "bg-primary text-white"
-                          : "bg-default-100 text-foreground"
+                      key={i}
+                      className={`flex ${
+                        m.from === "user" ? "justify-end" : "justify-start"
                       }`}
                     >
-                      {m.from === "bot" ? (
-                        <ReactMarkdown
-                          components={{
-                            a: ({ node, ...props }) => (
-                              <a
-                                {...props}
-                                className="text-primary underline hover:opacity-80"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              />
-                            ),
-                          }}
-                        >
-                          {m.text}
-                        </ReactMarkdown>
-                      ) : (
-                        m.text
-                      )}
+                      <div
+                        className={`rounded-2xl p-2 px-3 max-w-[80%] break-words ${
+                          m.from === "user"
+                            ? "bg-primary text-white"
+                            : "bg-default-100 text-foreground"
+                        }`}
+                      >
+                        {m.from === "bot" ? (
+                          <ReactMarkdown
+                            components={{
+                              a: ({ node, ...props }) => (
+                                <a
+                                  {...props}
+                                  className="text-primary underline hover:opacity-80"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                />
+                              ),
+                            }}
+                          >
+                            {m.text}
+                          </ReactMarkdown>
+                        ) : (
+                          m.text
+                        )}
+                      </div>
                     </div>
-                    <div ref={messagesEndRef} />
-                  </div>
-                ))}
+                  ))}
+                  {/* ✅ only one ref here */}
+                  <div ref={messagesEndRef} />
 
-                {loading && (
-                  <div className="flex items-start text-sm text-gray-400">
-                    {config.nickname} está digitando...
-                  </div>
-                )}
+                  {loading && (
+                    <div className="flex items-start text-sm text-gray-400">
+                      {config.nickname} está digitando...
+                    </div>
+                  )}
+                </div>
               </ModalBody>
 
               <ModalFooter className="flex flex-row gap-2">
