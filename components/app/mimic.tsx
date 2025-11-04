@@ -14,7 +14,7 @@ import {
 } from "@heroui/modal";
 import { Input } from "@heroui/react";
 import axios from "axios";
-import { Stars, X } from "lucide-react";
+import { MessageCircle, Stars, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 type UmimicResponse = {
@@ -138,7 +138,7 @@ export function UMimic(): JSX.Element {
             isIconOnly
             className="text-foreground hover:text-white hover:bg-primary bg-transparent "
           >
-            <Stars />
+            <MessageCircle />
           </Button>
         </div>
       )}
