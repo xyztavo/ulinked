@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { Button } from "@heroui/button";
 
-import { DiscordIcon, SpotifyIcon, TiktokIcon } from "@/components/icons/icons";
+import { DiscordIcon, SpotifyIcon, TiktokIcon, WhatsAppIcon } from "@/components/icons/icons";
 import config from "@/config";
 
 export default function SocialMedia() {
@@ -17,7 +17,7 @@ export default function SocialMedia() {
       {config.githubLink && (
         <Button
           isIconOnly
-          className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-slate-800"
+          className="text-foreground hover:text-white bg-transparent  hover:bg-slate-800"
           size="sm"
           onPress={() => window.open(config.githubLink, "_blank")}
         >
@@ -27,7 +27,7 @@ export default function SocialMedia() {
       {config.instagramLink && (
         <Button
           isIconOnly
-          className="relative text-foreground bg-transparent hover:text-white shadow-custom overflow-hidden rounded-md transition-all duration-300 group"
+          className="relative text-foreground bg-transparent hover:text-white  overflow-hidden rounded-md transition-all duration-300 group"
           size="sm"
           onPress={() => window.open(config.instagramLink, "_blank")}
         >
@@ -42,7 +42,7 @@ export default function SocialMedia() {
       {config.tiktokLink && (
         <Button
           isIconOnly
-          className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-black"
+          className="text-foreground hover:text-white bg-transparent  hover:bg-black"
           size="sm"
           onPress={() => window.open(config.tiktokLink, "_blank")}
         >
@@ -56,7 +56,7 @@ export default function SocialMedia() {
       {config.discordLink && (
         <Button
           isIconOnly
-          className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#5865F2]"
+          className="text-foreground hover:text-white bg-transparent  hover:bg-[#5865F2]"
           size="sm"
           onPress={() => window.open(config.discordLink, "_blank")}
         >
@@ -66,7 +66,7 @@ export default function SocialMedia() {
       {config.linkedInLink && (
         <Button
           isIconOnly
-          className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#0e76a8]"
+          className="text-foreground hover:text-white bg-transparent  hover:bg-[#0e76a8]"
           size="sm"
           onPress={() => window.open(config.linkedInLink, "_blank")}
         >
@@ -76,7 +76,7 @@ export default function SocialMedia() {
       {config.ytMusicLink && (
         <Button
           isIconOnly
-          className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#da1a1a]"
+          className="text-foreground hover:text-white bg-transparent  hover:bg-[#da1a1a]"
           size="sm"
           onPress={() => window.open(config.ytMusicLink, "_blank")}
         >
@@ -86,7 +86,7 @@ export default function SocialMedia() {
       {config.spotifyLink && (
         <Button
           isIconOnly
-          className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#1DB954]"
+          className="text-foreground hover:text-white bg-transparent  hover:bg-[#1DB954]"
           size="sm"
           onPress={() => window.open(config.spotifyLink, "_blank")}
         >
@@ -96,7 +96,7 @@ export default function SocialMedia() {
       {config.youtubeLink && (
         <Button
           isIconOnly
-          className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#c4302b]"
+          className="text-foreground hover:text-white bg-transparent  hover:bg-[#c4302b]"
           size="sm"
           onPress={() => window.open(config.youtubeLink, "_blank")}
         >
@@ -106,17 +106,17 @@ export default function SocialMedia() {
       {config.whatsAppLink && (
         <Button
           isIconOnly
-          className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#25d366]"
+          className="text-foreground hover:text-white bg-transparent  hover:bg-[#25d366]"
           size="sm"
           onPress={() => window.open(config.whatsAppLink, "_blank")}
         >
-          <YoutubeIcon />
+          <WhatsAppIcon />
         </Button>
       )}
       {config.mailLink && (
         <Button
           isIconOnly
-          className="text-foreground hover:text-white bg-transparent shadow-custom hover:bg-[#c4302b]"
+          className="text-foreground hover:text-white bg-transparent  hover:bg-[#c4302b]"
           size="sm"
           onPress={() => window.open(config.mailLink, "_blank")}
         >

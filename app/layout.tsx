@@ -36,12 +36,10 @@ export default function RootLayout({
       <body>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative bg-background antialiased font-mono flex flex-col min-h-screen"> 
-            {/* Background */}
-            <div className="absolute inset-0 bg-[url('/assets/static.gif')] bg-repeat opacity-5 pointer-events-none z-0" />
             {/* Main Content */}
             <main
               className={
-                "flex items-center justify-center z-10  m-auto pt-16 md:pt-0 flex-grow " +
+                "flex items-center justify-center z-10  m-auto flex-grow " +
                 fontGothic.className
               }
             >

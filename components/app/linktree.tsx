@@ -72,7 +72,7 @@ export default function Linktree() {
           {config.options.gallery && (
             <Button
               isIconOnly
-              className="shadow-custom hover:text-white bg-transparent hover:bg-primary"
+              className=" hover:text-white bg-transparent hover:bg-primary"
               onPress={onAlbumsOpen}
             >
               <Camera />
@@ -87,7 +87,7 @@ export default function Linktree() {
           {config.buttons.map((button) => (
             <Button
               key={button.link}
-              className="text-foreground hover:text-white w-64 hover:bg-primary bg-transparent shadow-custom border border-foreground/15"
+              className="text-foreground hover:text-white w-64 hover:bg-primary bg-transparent  border border-foreground/15"
               size="lg"
               onPress={() => window.open(button.link, "_blank")}
             >

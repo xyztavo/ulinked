@@ -27,14 +27,14 @@ export function Spotify({ data }: { data?: LanyardResponse }) {
         <div className="flex flex-row items-center justify-center gap-2">
           <Button
             isIconOnly
-            className="shadow-custom hover:text-white bg-transparent hover:bg-primary"
+            className=" hover:text-white bg-transparent hover:bg-primary"
             size="sm"
             onPress={onSpotifyOpen}
           >
             <Music className="p-1" />
           </Button>
           <Button
-            className="shadow-custom bg-transparent hover:bg-primary max-w-60 text-foreground"
+            className=" bg-transparent hover:bg-primary max-w-60 text-foreground"
             onPress={onSpotifyOpen} // This will trigger opening the modal
           >
             {data.data.spotify.song && <>{data.data.spotify.song}</>}

@@ -36,7 +36,7 @@ export default function Album() {
         <Button
           isIconOnly
           onPress={() => window.location.replace("/")}
-          className="bg-transparent hover:bg-primary shadow-custom"
+          className="bg-transparent hover:bg-primary "
         >
           <ArrowLeftCircleIcon />
         </Button>
@@ -44,7 +44,7 @@ export default function Album() {
         <Button
           isIconOnly
           color="secondary"
-          className="bg-transparent hover:bg-primary shadow-custom text-foreground"
+          className="bg-transparent hover:bg-primary  text-foreground"
           onPress={onOpen}
         >
           <Camera />

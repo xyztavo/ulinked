@@ -136,7 +136,7 @@ export function UMimic(): JSX.Element {
           <Button
             onPress={onMimicOpen}
             isIconOnly
-            className="text-foreground hover:text-white hover:bg-primary bg-transparent shadow-custom"
+            className="text-foreground hover:text-white hover:bg-primary bg-transparent "
           >
             <Stars />
           </Button>

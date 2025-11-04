@@ -1,17 +1,22 @@
 import { BlogProps } from "./types/config.blog"
 
 const blog: BlogProps = {
-    title: "about me",
+    title: "Sobre Nós",
     posts: [
         {
-            title: "i'm a fullstack developer",
-            description: "I'm a brazilian dev and i'll write the worst piece of code you'll ever see 🚀.",
-            footer: "i mostly work with Nextjs and GO",
+            title: "Transformando medo em confiança",
+            description: "A Direção Positiva nasceu pra ajudar quem sente insegurança ao dirigir. Nosso método é humanizado e foca em evolução real — sem pressão, sem julgamentos.",
+            footer: "Atendemos no Grajaú e região com aulas práticas personalizadas 🚗",
         },
         {
-            title: "... but also a editor",
-            description: `i also like to film some cool cars and make some "cool" edits with it 🔥.`,
-            footer: "i work with Premiere and After Effects",
+            title: "Planos e valores acessíveis",
+            description: "Temos três opções pensadas pra cada fase: o Essencial (R$300), o Confiança (R$600) e o Transformação (R$1.000). Todos com acompanhamento e veículo incluso.",
+            footer: "Aulas de segunda a domingo, sempre com foco em resultado 💪",
+        },
+        {
+            title: "Cursos online exclusivos",
+            description: "Quer aprender sem sair de casa? Temos o curso 'Dirigir Com Tranquilidade' e o 'Guia Prático de Direção' — ambos com mais de 20 aulas passo a passo.",
+            footer: `Disponíveis na Eduzz nos links acima 🎥`,
         },
     ],
 }

@@ -7,8 +7,8 @@ import config from "../config";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-full">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-[10rem]">
+    <div className="flex flex-col min-h-full">
+      <div className="flex flex-col items-center justify-center my-10 gap-16 ">
         <Linktree />
         {config.options.blog && <Blog />}
       </div>
