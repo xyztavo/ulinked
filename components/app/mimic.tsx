@@ -14,7 +14,7 @@ import {
 } from "@heroui/modal";
 import { Input } from "@heroui/react";
 import axios from "axios";
-import { Stars } from "lucide-react";
+import { Stars, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 type UmimicResponse = {
@@ -42,7 +42,7 @@ export function UMimic(): JSX.Element {
 
   const defaultBotMessage: ChatMessage = {
     from: "bot",
-    text: `eai irmao tranquilo? eu sou o ${config.nickname}, qual a boa de hoje?`,
+    text: UmimicConfig.greeting,
   };
 
   // Load messages from localStorage
@@ -212,15 +212,15 @@ export function UMimic(): JSX.Element {
 
               <ModalFooter className="flex flex-row gap-2">
                 <Input
-                  placeholder="Digite algo..."
+                  placeholder="Qual o valor das aulas?"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") handleSend();
                   }}
                 />
-                <Button color="primary" onPress={handleSend}>
-                  Enviar
+                <Button isIconOnly color="danger" onPress={onClose}>
+                  <X />
                 </Button>
               </ModalFooter>
             </>
