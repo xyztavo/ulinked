@@ -10,7 +10,7 @@ const blog: BlogProps = {
         },
         {
             title: "Planos e valores acessíveis",
-            description: "Temos três opções pensadas pra cada fase: o Essencial (R$300), o Confiança (R$600) e o Transformação (R$1.000). Todos com acompanhamento e veículo incluso.",
+            description: "Temos três opções pensadas pra cada fase: o Essencial (R$390 - 3 aulas), o Confiança (R$660 - 6 aulas) e o Transformação (R$1.100 - 10 aulas). Todos com acompanhamento e veículo incluso. Aulas Avulsas de R$150.00 por apenas R$130 direto no nosso site.",
             footer: "Aulas de segunda a domingo, sempre com foco em resultado 💪",
         },
         {
