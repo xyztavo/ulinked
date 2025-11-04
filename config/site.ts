@@ -2,6 +2,6 @@ export type SiteConfig = typeof siteConfig;
 import  config from "../config";
 
 export const siteConfig = {
-  name: config.nickname + " bio",
-  description: "my mogger linktree",
+  name: config.nickname + " links",
+  description: "Transformando vidas no transito de forma positiva.",
 };
