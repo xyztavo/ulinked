@@ -118,7 +118,7 @@ export function UMimic(): JSX.Element {
     const isMobile = window.innerWidth < 768;
 
     const timeout = setTimeout(() => {
-      const scrollBehavior = isMobile ? "auto" : "smooth";
+      const scrollBehavior = "smooth";
       messagesEndRef.current?.scrollIntoView({
         behavior: scrollBehavior,
         block: "end",
@@ -153,7 +153,7 @@ export function UMimic(): JSX.Element {
           {(onClose) => (
             <>
               <ModalHeader>{config.nickname}</ModalHeader>
-              <ModalBody className="h-[60vh] sm:max-h-[400px] overflow-y-auto">
+              <ModalBody className=" overflow-y-auto">
                 <div
                   ref={messagesContainerRef}
                   className="flex flex-col gap-3 min-h-full"
