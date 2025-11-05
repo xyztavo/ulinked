@@ -24,7 +24,7 @@ const config: ConfigProps = {
       link: "https://www.instagram.com/ustav.dev/",
     },
     {
-      title: "edits - tiktok",
+      title: "edits tiktok",
       link: "https://www.tiktok.com/@ustav.go",
     },
     {
