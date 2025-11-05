@@ -42,7 +42,7 @@ export function UMimic(): JSX.Element {
 
   const defaultBotMessage: ChatMessage = {
     from: "bot",
-    text: `eai irmao tranquilo? eu sou o ${config.nickname}, qual a boa de hoje?`,
+    text: UmimicConfig.greeting,
   };
 
   // Load messages from localStorage
