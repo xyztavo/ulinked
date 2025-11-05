@@ -219,7 +219,7 @@ export function UMimic(): JSX.Element {
                     if (e.key === "Enter") handleSend();
                   }}
                 />
-                <Button isIconOnly color="primary" onPress={handleSend}>
+                <Button isIconOnly color="danger" onPress={onClose}>
                   <X />
                 </Button>
               </ModalFooter>
