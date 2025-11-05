@@ -16,12 +16,12 @@ const config: ConfigProps = {
   avatarImgSrc: "/assets/profile.png",
   buttons: [
     {
-      title: "edits - youtube",
-      link: "https://www.youtube.com/@ustav_o/featured",
+      title: "personal instagram",
+      link: "https://www.instagram.com/luna.ustav/",
     },
     {
-      title: "edits - instagram",
-      link: "https://www.instagram.com/ustav.go/",
+      title: "developer instagram",
+      link: "https://www.instagram.com/ustav.dev/",
     },
     {
       title: "edits - tiktok",
