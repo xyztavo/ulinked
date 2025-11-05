@@ -14,7 +14,7 @@ import {
 } from "@heroui/modal";
 import { Input } from "@heroui/react";
 import axios from "axios";
-import { Stars } from "lucide-react";
+import { Stars, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 type UmimicResponse = {
@@ -219,8 +219,8 @@ export function UMimic(): JSX.Element {
                     if (e.key === "Enter") handleSend();
                   }}
                 />
-                <Button color="primary" onPress={handleSend}>
-                  Enviar
+                <Button isIconOnly color="primary" onPress={handleSend}>
+                  <X />
                 </Button>
               </ModalFooter>
             </>
