@@ -39,17 +39,19 @@ export function UMimic(): JSX.Element {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [systemMessage, setSystemMessage] = useState<{ role: string; content: string } | null>(() => {
-    if (typeof window === "undefined") return null;
+  const [systemMessage, setSystemMessage] = useState<{ role: string; content: string }>(() => {
+    if (typeof window === "undefined") return { role: "system", content: UmimicConfig.personalities?.[0]?.prompt || "" };
     const stored = localStorage.getItem("umimic_personality");
-    return stored ? { role: "system", content: stored } : null;
+    return stored 
+      ? { role: "system", content: stored }
+      : { role: "system", content: UmimicConfig.personalities?.[0]?.prompt || "" };
   });
-  const [personalityIndex, setPersonalityIndex] = useState<number | null>(() => {
-    if (typeof window === "undefined") return null;
+  const [personalityIndex, setPersonalityIndex] = useState<number>(() => {
+    if (typeof window === "undefined") return 0;
     const stored = localStorage.getItem("umimic_personality");
-    if (!stored) return null;
-    const idx = UmimicConfig.personalities?.findIndex((p) => p.prompt === stored) ?? -1;
-    return idx >= 0 ? idx : null;
+    if (!stored) return 0;
+    const idx = UmimicConfig.personalities?.findIndex((p) => p.prompt === stored) ?? 0;
+    return idx >= 0 ? idx : 0;
   });
 
   const defaultBotMessage: ChatMessage = {
@@ -170,20 +172,6 @@ export function UMimic(): JSX.Element {
                 </div>
                 {UmimicConfig.personalities && (
                   <div className="flex flex-row gap-2 flex-wrap px-2">
-                    {/* None option: clear personality */}
-                    <Chip
-                      key="none"
-                      variant={personalityIndex === null ? "solid" : "flat"}
-                      className="cursor-pointer transition-colors"
-                      onClick={() => {
-                        setPersonalityIndex(null);
-                        setSystemMessage(null);
-                        localStorage.removeItem("umimic_personality");
-                      }}
-                    >
-                      None
-                    </Chip>
-
                     {UmimicConfig.personalities.map((personality, index) => (
                       <Chip
                         key={personality.name}
