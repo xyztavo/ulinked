@@ -163,7 +163,7 @@ export function UMimic(): JSX.Element {
         onOpenChange={onMimicOpenChange}
         className="font-mono"
       >
-        <ModalContent className="max-h-[60dvh] min-h-[40dvh] h-auto">
+        <ModalContent className="max-h-[70dvh] min-h-[40dvh] h-auto">
           {(onClose) => (
             <>
               <ModalHeader className="flex-col gap-2">
