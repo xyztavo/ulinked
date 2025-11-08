@@ -2,7 +2,6 @@ export interface GalleryProps {
   albums: AlbumProps[];
 }
 
-
 export interface AlbumProps {
   title: string;
   route: string;

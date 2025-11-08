@@ -114,11 +114,8 @@ export function UMimic(): JSX.Element {
   useEffect(() => {
     if (!messagesContainerRef.current || !messagesEndRef.current) return;
 
-    const container = messagesContainerRef.current;
-    const isMobile = window.innerWidth < 768;
-
     const timeout = setTimeout(() => {
-      const scrollBehavior = isMobile ? "auto" : "smooth";
+      const scrollBehavior = "smooth";
       messagesEndRef.current?.scrollIntoView({
         behavior: scrollBehavior,
         block: "end",
@@ -149,11 +146,11 @@ export function UMimic(): JSX.Element {
         onOpenChange={onMimicOpenChange}
         className="font-mono"
       >
-        <ModalContent>
+        <ModalContent className="max-h-[60dvh] min-h-[40dvh] h-auto">
           {(onClose) => (
             <>
               <ModalHeader>{config.nickname}</ModalHeader>
-              <ModalBody className="h-[60vh] sm:max-h-[400px] overflow-y-auto">
+              <ModalBody className="flex-grow overflow-y-auto">
                 <div
                   ref={messagesContainerRef}
                   className="flex flex-col gap-3 min-h-full"
@@ -200,13 +197,13 @@ export function UMimic(): JSX.Element {
                     </div>
                   ))}
                   {/* ✅ only one ref here */}
-                  <div ref={messagesEndRef} />
 
                   {loading && (
                     <div className="flex items-start text-sm text-gray-400">
                       {config.nickname} está digitando...
                     </div>
                   )}
+                  <div ref={messagesEndRef} />
                 </div>
               </ModalBody>
 
