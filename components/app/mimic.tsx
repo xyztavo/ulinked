@@ -12,7 +12,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/modal";
-import { Input } from "@heroui/react";
+import { Input, Chip } from "@heroui/react";
 import axios from "axios";
 import { Stars, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
@@ -39,6 +39,18 @@ export function UMimic(): JSX.Element {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [systemMessage, setSystemMessage] = useState<{ role: string; content: string } | null>(() => {
+    if (typeof window === "undefined") return null;
+    const stored = localStorage.getItem("umimic_personality");
+    return stored ? { role: "system", content: stored } : null;
+  });
+  const [personalityIndex, setPersonalityIndex] = useState<number | null>(() => {
+    if (typeof window === "undefined") return null;
+    const stored = localStorage.getItem("umimic_personality");
+    if (!stored) return null;
+    const idx = UmimicConfig.personalities?.findIndex((p) => p.prompt === stored) ?? -1;
+    return idx >= 0 ? idx : null;
+  });
 
   const defaultBotMessage: ChatMessage = {
     from: "bot",
@@ -83,11 +95,14 @@ export function UMimic(): JSX.Element {
     setLoading(true);
 
     try {
-      // Prepare conversation history for backend
-      const history = newMessages.map((m) => ({
-        role: m.from === "user" ? "user" : "assistant",
-        content: m.text,
-      }));
+      // Prepare conversation history with system message (if exists) for backend
+      const history = [
+        ...(systemMessage ? [systemMessage] : []),
+        ...newMessages.map((m) => ({
+          role: m.from === "user" ? "user" : "assistant",
+          content: m.text,
+        }))
+      ];
 
       const res = await axios.post<UmimicResponse>(
         `${UmimicConfig.apiBaseUrl}/api/message`,
@@ -149,7 +164,45 @@ export function UMimic(): JSX.Element {
         <ModalContent className="max-h-[60dvh] min-h-[40dvh] h-auto">
           {(onClose) => (
             <>
-              <ModalHeader>{config.nickname}</ModalHeader>
+              <ModalHeader className="flex-col gap-2">
+                <div className="flex flex-row justify-between w-full px-2">
+                  <div>{config.nickname}</div>
+                </div>
+                {UmimicConfig.personalities && (
+                  <div className="flex flex-row gap-2 flex-wrap px-2">
+                    {/* None option: clear personality */}
+                    <Chip
+                      key="none"
+                      variant={personalityIndex === null ? "solid" : "flat"}
+                      className="cursor-pointer transition-colors"
+                      onClick={() => {
+                        setPersonalityIndex(null);
+                        setSystemMessage(null);
+                        localStorage.removeItem("umimic_personality");
+                      }}
+                    >
+                      None
+                    </Chip>
+
+                    {UmimicConfig.personalities.map((personality, index) => (
+                      <Chip
+                        key={personality.name}
+                        variant={personalityIndex === index ? "solid" : "flat"}
+                        color="primary"
+                        className="cursor-pointer transition-colors"
+                        onClick={() => {
+                          setPersonalityIndex(index);
+                          const newSystemMessage = { role: "system", content: personality.prompt };
+                          setSystemMessage(newSystemMessage);
+                          localStorage.setItem("umimic_personality", personality.prompt);
+                        }}
+                      >
+                        {personality.name}
+                      </Chip>
+                    ))}
+                  </div>
+                )}
+              </ModalHeader>
               <ModalBody className="flex-grow overflow-y-auto">
                 <div
                   ref={messagesContainerRef}
