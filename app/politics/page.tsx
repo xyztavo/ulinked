@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 
-export default function PrivacyPage() {
+export default function Page() {
   const [copied, setCopied] = useState(false);
 
   function handleCopyUrl(): void {
@@ -18,17 +19,17 @@ export default function PrivacyPage() {
 
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 md:p-12 text-gray-900">
-      <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 shadow-md">
+    <div className="min-h-screen p-6 md:p-12 text-foreground">
+      <div className="mx-auto max-w-4xl rounded-2xl bg-content1 p-6 shadow-md">
         <header className="mb-6 flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-semibold">Política de Privacidade</h1>
-            <p className="mt-1 text-sm text-gray-600">Última atualização: 10 de novembro de 2025</p>
+            <p className="mt-1 text-sm text-default-600">Última atualização: 10 de novembro de 2025</p>
           </div>
           <div className="flex gap-2">
             <button
               onClick={handleCopyUrl}
-              className="rounded-md border border-gray-200 px-3 py-2 text-sm hover:bg-gray-50"
+              className="rounded-md border border-default-200 px-3 py-2 text-sm hover:bg-default-100"
               aria-label="Copiar URL da página"
             >
               {copied ? "URL copiada" : "Copiar URL"}
@@ -36,7 +37,7 @@ export default function PrivacyPage() {
           </div>
         </header>
 
-        <article className="prose max-w-none prose-a:text-blue-600">
+        <article className="prose dark:prose-invert max-w-none prose-a:text-primary">
           <h2>1. Introdução</h2>
           <p>
             Esta política descreve como coletamos, usamos e protegemos os dados pessoais que você fornece ao
@@ -68,18 +69,9 @@ export default function PrivacyPage() {
             Você pode solicitar acesso, correção, exclusão ou portabilidade dos seus dados, e retirar o consentimento a
             qualquer momento pelo e-mail indicado acima.
           </p>
-
-          <hr />
         </article>
       </div>
     </div>
   );
-}
-function useRef<T>(arg0: null) {
-    throw new Error("Function not implemented.");
-}
-
-function useState(arg0: boolean): [any, any] {
-    throw new Error("Function not implemented.");
 }
 
