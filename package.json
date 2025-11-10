@@ -9,23 +9,23 @@
     "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
   },
   "dependencies": {
-    "@heroui/avatar": "2.2.10",
-    "@heroui/badge": "2.2.9",
-    "@heroui/button": "2.2.13",
+    "@heroui/avatar": "^2.2.10",
+    "@heroui/badge": "^2.2.9",
+    "@heroui/button": "^2.2.13",
     "@heroui/card": "^2.2.25",
-    "@heroui/code": "2.2.10",
-    "@heroui/input": "2.4.13",
-    "@heroui/kbd": "2.2.10",
-    "@heroui/link": "2.2.11",
-    "@heroui/listbox": "2.3.13",
-    "@heroui/modal": "2.2.11",
-    "@heroui/navbar": "2.2.12",
+    "@heroui/code": "^2.2.10",
+    "@heroui/input": "^2.4.13",
+    "@heroui/kbd": "^2.2.10",
+    "@heroui/link": "^2.2.11",
+    "@heroui/listbox": "^2.3.13",
+    "@heroui/modal": "^2.2.11",
+    "@heroui/navbar": "^2.2.12",
     "@heroui/react": "^2.8.5",
-    "@heroui/snippet": "2.2.14",
-    "@heroui/switch": "2.2.12",
-    "@heroui/system": "2.4.10",
-    "@heroui/theme": "2.4.9",
-    "@heroui/tooltip": "2.2.11",
+    "@heroui/snippet": "^2.2.14",
+    "@heroui/switch": "^2.2.12",
+    "@heroui/system": "^2.4.10",
+    "@heroui/theme": "^2.4.9",
+    "@heroui/tooltip": "^2.2.11",
     "@react-aria/ssr": "3.9.4",
     "@react-aria/visually-hidden": "3.8.12",
     "axios": "^1.13.2",
@@ -61,6 +61,9 @@
     "tailwind-variants": "0.1.20",
     "tailwindcss": "3.4.3",
     "typescript": "5.0.4"
+  },
+  "overrides": {
+    "@heroui/input": "^2.4.13"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
