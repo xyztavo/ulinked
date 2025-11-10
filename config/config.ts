@@ -15,7 +15,7 @@ const config: ConfigProps = {
   accentColor: "#7300ff",
   avatarImgSrc: "/assets/profile.png",
   buttons: [
-      {
+    {
       title: "Aulas de Golang - R$45,00",
       link: "https://wa.me/5511993318133?text=Ol%C3%A1%2C+gostaria+de+saber+mais+sobre+as+aulas+de+Golang.",
     },
@@ -31,7 +31,6 @@ const config: ConfigProps = {
       title: "edits tiktok",
       link: "https://www.tiktok.com/@ustav.go",
     },
-  
   ],
   githubLink: "https://github.com/xyztavo",
   instagramLink: "https://www.instagram.com/luna.ustav/",
