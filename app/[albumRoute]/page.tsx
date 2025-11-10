@@ -14,11 +14,11 @@ import {
 import Video from "next-video";
 import Image from "next/image";
 
-import config from "../../config";
+import config from "../../config/config";
 
 import { ThemeSwitch } from "@/components/app/theme-switch";
 import { AlbumsModal } from "@/components/app/albums-modal";
-import gallery from "@/config.gallery";
+import gallery from "@/config/config.gallery";
 
 export default function Album() {
   const params = useParams<{ albumRoute: string }>();

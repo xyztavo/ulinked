@@ -1,4 +1,4 @@
-import { BlogProps } from "./types/config.blog"
+import { BlogProps } from "../types/config.blog"
 
 const blog: BlogProps = {
     title: "about me",

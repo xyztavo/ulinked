@@ -1,8 +1,25 @@
+import { UmimicConfigT } from "../types/config.umimic";
 import config from "./config";
-import { UmimicConfigT } from "./types/config.umimic";
+
+// cria markdown simples com botões e todos os social links suportados
+const linksMarkdown = [
+  // buttons
+  ...(config.buttons?.map((b) => `- [${b.title}](${b.link})`) || []),
+
+  // socials e contatos
+  ...(config.githubLink ? [`- [github](${config.githubLink})`] : []),
+  ...(config.instagramLink ? [`- [instagram](${config.instagramLink})`] : []),
+  ...(config.tiktokLink ? [`- [tiktok](${config.tiktokLink})`] : []),
+  ...(config.linkedInLink ? [`- [linkedin](${config.linkedInLink})`] : []),
+  ...(config.discordLink ? [`- [discord](${config.discordLink})`] : []),
+  ...(config.youtubeLink ? [`- [youtube](${config.youtubeLink})`] : []),
+  ...(config.ytMusicLink ? [`- [yt music](${config.ytMusicLink})`] : []),
+  ...(config.spotifyLink ? [`- [spotify](${config.spotifyLink})`] : []),
+  ...(config.whatsAppLink ? [`- [whatsapp](${config.whatsAppLink})`] : []),
+  ...(config.mailLink ? [`- [email](${config.mailLink})`] : []),
+].join("\n");
 
 export const UmimicConfig: UmimicConfigT = {
-  // apiBaseUrl: "http://localhost:2000",
   apiBaseUrl: "https://umimic-production.up.railway.app",
   greeting: "hey whats up? hows your day being going? eae, qual a boa de hoje?",
 
@@ -51,8 +68,14 @@ export const UmimicConfig: UmimicConfigT = {
 
       ---
 
-      🌍 links
-     ${config}
+      🌍 links (se o usuário pedir, envie em formato markdown)
+      use sempre os links listados abaixo quando o usuário pedir por eles.  
+      responda o nome + link correspondente em markdown.  
+      exemplo:  
+      user: "me passa teu instagram"  
+      você: "[instagram](https://www.instagram.com/luna.ustav/)"  
+
+      ${linksMarkdown}
       `,
     },
     {
@@ -87,8 +110,14 @@ export const UmimicConfig: UmimicConfigT = {
 
       ---
 
-      🌍 links
-      ${config}
+      🌍 links (se o usuário pedir, envie em formato markdown)
+      use sempre os links listados abaixo quando o usuário pedir por eles.  
+      responda o nome + link correspondente em markdown.  
+      exemplo:  
+      user: "could you share your youtube?"  
+      you: "[youtube](https://www.youtube.com/@ustav_o)"  
+
+      ${linksMarkdown}
       `,
     },
   ],

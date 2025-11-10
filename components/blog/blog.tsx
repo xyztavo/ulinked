@@ -1,8 +1,8 @@
 
 
 import { Card, CardHeader, CardBody, CardFooter, Avatar, Button } from "@heroui/react";
-import config from "@/config";
-import blog from "@/config.blog"
+import config from "@/config/config";
+import blog from "@/config/config.blog"
 
 export default function Blog() {
     return (

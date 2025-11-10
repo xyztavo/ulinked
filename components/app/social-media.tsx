@@ -9,7 +9,7 @@ import {
 import { Button } from "@heroui/button";
 
 import { DiscordIcon, SpotifyIcon, TiktokIcon } from "@/components/icons/icons";
-import config from "@/config";
+import config from "@/config/config";
 
 export default function SocialMedia() {
   return (

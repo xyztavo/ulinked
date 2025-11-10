@@ -1,5 +1,5 @@
 import {heroui} from "@heroui/theme"
-import config from './config'
+import config from './config/config'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

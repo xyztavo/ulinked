@@ -1,4 +1,4 @@
-import gallery from "@/config.gallery";
+import gallery from "@/config/config.gallery";
 import { GalleryProps } from "@/types/config.gallery";
 import { Button } from "@heroui/button";
 import {

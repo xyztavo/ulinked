@@ -1,4 +1,4 @@
-import { ConfigProps } from "./types/config";
+import { ConfigProps } from "../types/config";
 
 const config: ConfigProps = {
   options: {

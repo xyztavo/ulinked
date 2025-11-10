@@ -3,7 +3,7 @@ import Blog from "@/components/blog/blog";
 import Footer from "@/components/app/footer";
 import Linktree from "@/components/app/linktree";
 import React from "react";
-import config from "../config";
+import config from "../config/config";
 
 export default function Home() {
   return (

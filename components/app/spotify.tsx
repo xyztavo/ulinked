@@ -1,4 +1,4 @@
-import config from "@/config";
+import config from "@/config/config";
 import { LanyardData } from "@/types/lanyard-data";
 import { Button } from "@heroui/button";
 import {

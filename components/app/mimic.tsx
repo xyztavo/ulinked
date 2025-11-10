@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import config from "@/config";
-import { UmimicConfig } from "@/config.umimic";
+import config from "@/config/config";
+import { UmimicConfig } from "@/config/config.umimic";
 import { Button } from "@heroui/button";
 import {
   Modal,

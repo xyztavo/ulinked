@@ -1,4 +1,4 @@
-import { GalleryProps } from "./types/config.gallery";
+import { GalleryProps } from "../types/config.gallery";
 
 const gallery: GalleryProps = {
   albums: [

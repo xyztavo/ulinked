@@ -1,4 +1,4 @@
-import config from "@/config";
+import config from "@/config/config";
 import { LanyardResponse } from "./linktree";
 import { Badge } from "@heroui/badge";
 import { Tooltip } from "@heroui/tooltip";

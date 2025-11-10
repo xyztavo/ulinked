@@ -6,8 +6,8 @@ import useSWR from "swr";
 import axios from "axios";
 import Head from "next/head";
 
-import gallery from "../../config.gallery";
-import config from "../../config";
+import gallery from "../../config/config.gallery";
+import config from "../../config/config";
 
 import { ThemeSwitch } from "@/components/app/theme-switch";
 import { LanyardData } from "@/types/lanyard-data";
