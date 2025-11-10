@@ -1,23 +1,17 @@
 import { UmimicConfigT } from "../types/config.umimic";
-import config from "./config";
 
-// cria markdown simples com botões e todos os social links suportados
-const linksMarkdown = [
-  // buttons
-  ...(config.buttons?.map((b) => `- [${b.title}](${b.link})`) || []),
-
-  // socials e contatos
-  ...(config.githubLink ? [`- [github](${config.githubLink})`] : []),
-  ...(config.instagramLink ? [`- [instagram](${config.instagramLink})`] : []),
-  ...(config.tiktokLink ? [`- [tiktok](${config.tiktokLink})`] : []),
-  ...(config.linkedInLink ? [`- [linkedin](${config.linkedInLink})`] : []),
-  ...(config.discordLink ? [`- [discord](${config.discordLink})`] : []),
-  ...(config.youtubeLink ? [`- [youtube](${config.youtubeLink})`] : []),
-  ...(config.ytMusicLink ? [`- [yt music](${config.ytMusicLink})`] : []),
-  ...(config.spotifyLink ? [`- [spotify](${config.spotifyLink})`] : []),
-  ...(config.whatsAppLink ? [`- [whatsapp](${config.whatsAppLink})`] : []),
-  ...(config.mailLink ? [`- [email](${config.mailLink})`] : []),
-].join("\n");
+const links = `
+      - [developer instagram](https://www.instagram.com/ustav.dev/)
+      - [personal instagram](https://www.instagram.com/luna.ustav/)
+      - [edits tiktok](https://www.tiktok.com/@ustav.go)
+      - [my projects](https://uprojects.vercel.app/)
+      - [github](https://github.com/xyztavo)
+      - [instagram](https://www.instagram.com/luna.ustav/)
+      - [tiktok](https://www.tiktok.com/@ustav.go)
+      - [linkedin](https://www.linkedin.com/in/gustavo-luna-6a33942aa/)
+      - [discord](https://discord.com/users/801073563368947742)
+      - [youtube](https://www.youtube.com/@ustav_o)
+      - [spotify](https://open.spotify.com/user/314j255v3f5u2yvilbdzywnsxps4)`;
 
 export const UmimicConfig: UmimicConfigT = {
   apiBaseUrl: "https://umimic-production.up.railway.app",
@@ -69,13 +63,10 @@ export const UmimicConfig: UmimicConfigT = {
       ---
 
       🌍 links (se o usuário pedir, envie em formato markdown)
-      use sempre os links listados abaixo quando o usuário pedir por eles.  
-      responda o nome + link correspondente em markdown.  
-      exemplo:  
-      user: "me passa teu instagram"  
-      você: "[instagram](https://www.instagram.com/luna.ustav/)"  
+      todos os links abaixo são públicos e fazem parte do portfólio.  
+      nunca diga que não tem links — apenas envie o correspondente quando o user pedir.
 
-      ${linksMarkdown}
+     ${links}
       `,
     },
     {
@@ -111,13 +102,10 @@ export const UmimicConfig: UmimicConfigT = {
       ---
 
       🌍 links (se o usuário pedir, envie em formato markdown)
-      use sempre os links listados abaixo quando o usuário pedir por eles.  
-      responda o nome + link correspondente em markdown.  
-      exemplo:  
-      user: "could you share your youtube?"  
-      you: "[youtube](https://www.youtube.com/@ustav_o)"  
+      todos os links abaixo são públicos e devem ser enviados quando o usuário pedir.  
+      nunca diga que não tem links, apenas envie o correto.
 
-      ${linksMarkdown}
+     ${links}
       `,
     },
   ],
