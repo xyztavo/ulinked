@@ -14,7 +14,7 @@ const links = `
       - [spotify](https://open.spotify.com/user/314j255v3f5u2yvilbdzywnsxps4)`;
 
 export const UmimicConfig: UmimicConfigT = {
-  apiBaseUrl: "https://umimic-production.up.railway.app",
+  apiBaseUrl: "https://umimic.discloud.app",
   greeting: "hey whats up? hows your day being going? eae, qual a boa de hoje?",
 
   personalities: [
