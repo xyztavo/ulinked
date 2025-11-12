@@ -39,6 +39,7 @@ export function UMimic(): JSX.Element {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [showPulse, setShowPulse] = useState<boolean>(true);
   const [systemMessage, setSystemMessage] = useState<{ role: string; content: string }>(() => {
     if (typeof window === "undefined") return { role: "system", content: UmimicConfig.personalities?.[0]?.prompt || "" };
     const stored = localStorage.getItem("umimic_personality");
@@ -59,7 +60,6 @@ export function UMimic(): JSX.Element {
     text: UmimicConfig.greeting,
   };
 
-  // Load messages from localStorage
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -78,7 +78,6 @@ export function UMimic(): JSX.Element {
     }
   }, []);
 
-  // Save messages to localStorage whenever they change
   useEffect(() => {
     if (typeof window === "undefined") return;
     localStorage.setItem("umimic_messages", JSON.stringify(messages));
@@ -97,14 +96,13 @@ export function UMimic(): JSX.Element {
     setLoading(true);
 
     try {
-      // Prepare conversation history with system message (if exists) for backend
-      const history = [
-        ...(systemMessage ? [systemMessage] : []),
-        ...newMessages.map((m) => ({
-          role: m.from === "user" ? "user" : "assistant",
-          content: m.text,
-        }))
-      ];
+        const history = [
+          ...(systemMessage ? [systemMessage] : []),
+          ...newMessages.map((m) => ({
+            role: m.from === "user" ? "user" : "assistant",
+            content: m.text,
+          }))
+        ];
 
       const res = await axios.post<UmimicResponse>(
         `${UmimicConfig.apiBaseUrl}/api/message`,
@@ -127,7 +125,6 @@ export function UMimic(): JSX.Element {
     }
   };
 
-  // ✅ Fixed scroll behavior for mobile
   useEffect(() => {
     if (!messagesContainerRef.current || !messagesEndRef.current) return;
 
@@ -142,22 +139,27 @@ export function UMimic(): JSX.Element {
     return () => clearTimeout(timeout);
   }, [messages]);
 
+  
+
   return (
     <>
-      {/* mimic trigger */}
       {config.options.umimic && (
         <div className="flex flex-row items-center justify-center gap-2">
-          <Button
-            onPress={onMimicOpen}
-            isIconOnly
-            className="text-foreground hover:text-white hover:bg-primary bg-transparent shadow-custom"
-          >
-            <Stars />
-          </Button>
+          <div className="relative inline-flex">
+            {showPulse && (
+              <span className="absolute -inset-1 rounded-full border-2 border-primary opacity-60 animate-ping pointer-events-none" />
+            )}
+            <Button
+              onPress={() => { setShowPulse(false); onMimicOpen(); }}
+              isIconOnly
+              className="text-foreground hover:text-white hover:bg-primary bg-transparent shadow-custom relative z-10"
+            >
+              <Stars />
+            </Button>
+          </div>
         </div>
       )}
-
-      {/* mimic modal */}
+      
       <Modal
         isOpen={isMimicOpen}
         onOpenChange={onMimicOpenChange}
@@ -237,7 +239,7 @@ export function UMimic(): JSX.Element {
                       </div>
                     </div>
                   ))}
-                  {/* ✅ only one ref here */}
+                  
 
                   {loading && (
                     <div className="flex items-start text-sm text-gray-400">
