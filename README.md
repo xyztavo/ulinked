@@ -48,110 +48,59 @@ const config: Config = {
     // Add more buttons...
   ],
   githubLink: "https://github.com/xyztavo",
-  instagramLink: "https://www.instagram.com/luna.gustah/",
-  // ...other social links
-  footer: "made with ❤️, ustav",
-};
-```
+  # ulinked
 
-### 3. Configure Gallery (Optional)
+  A minimal linktree-style site built with Next.js, HeroUI and Tailwind.
 
-Edit [`config/config.gallery.ts`](./config/config.gallery.ts) to add your albums and media.
+  ## ✨ Highlights
 
-### 4. Run Development Server
+  - Clean, responsive UI (HeroUI + Tailwind)
+  - Gallery support for photos/videos
+  - Discord status via Lanyard
+  - Optional AI chat (uMimic) with selectable personalities
 
-```bash
-bun dev  # or npm run dev / yarn dev
-```
+  ## 🚀 Quick Start
 
-Visit `http://localhost:3000` to see your site!
+  ```bash
+  git clone https://github.com/xyztavo/ulinked.git
+  cd ulinked
+  bun install   # or npm install / yarn install
+  bun dev       # or npm run dev / yarn dev
+  ```
 
-## 🤖 uMimic — AI Chat Feature
+  Edit your profile and features in `config/config.ts`. See `config/` for ready examples.
 
-uMimic is an interactive AI chat component that lets visitors talk to a personalized AI version of you.
+  ## 🤖 uMimic (AI Chat)
 
-### Setup uMimic
+  To enable uMimic, edit `config/config.umimic.ts` (set `apiBaseUrl`, `greeting`, and `personalities`) and enable `umimic` in `config/config.ts`. You also need a uMimic backend (see `xyztavo/umimic`).
 
-1. **Configure Personalities** — Edit [`config/config.umimic.ts`](./config/config.umimic.ts):
+  How it works: the frontend sends messages and conversation history to your backend, which returns AI replies. Conversation history is stored locally and auto-clears daily.
 
-```ts
-export const UmimicConfig: UmimicConfigT = {
-  apiBaseUrl: "https://your-backend-url.com", // Your uMimic backend URL
-  greeting: "hey whats up? how's your day going?",
-  
-  personalities: [
-    {
-      name: "Casual",
-      prompt: `Your personality prompt here...`,
-    },
-    {
-      name: "Formal",
-      prompt: `Your formal personality prompt...`,
-    },
-  ],
-};
-```
+  Customize personalities in `config/config.umimic.ts` and tweak UI in `components/mimic/`.
 
-2. **Backend Setup** — uMimic requires a backend API to handle AI requests:
-   - Check out the official backend: [xyztavo/umimic](https://github.com/xyztavo/umimic)
-   - Deploy your own instance or use the provided endpoint
+  ## 🖼️ Gallery
+
+  The gallery supports albums with images and videos. Configure albums and media in `config/config.gallery.ts` — media are stored under `public/assets/` and rendered with a clean album layout.
+
+  ## 📝 Blog
+
+  Built-in blog support uses markdown posts and simple components under `components/blog/`. Enable the blog in `config/config.ts` and add posts in the `app/` routes or the `blog` folder depending on your setup.
+
+  ## Project Structure (short)
+
+  `app/`, `components/`, `config/`, `public/`, `styles/` — check the `config/` folder for example files.
+
+  ## Built With
+
+  - Next.js 14
+  - HeroUI + Tailwind CSS
+  - Framer Motion (animations)
+  - Axios (HTTP)
+
+  ## Screenshots
+
+  <img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss1.png" />
+  <img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss2.png" />
+  <img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss3.png" />
+  <img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss4.png" />
    - Update `apiBaseUrl` in your config
-
-3. **Enable in Config** — Make sure `umimic: true` in your main `config.ts`
-
-### How It Works
-
-- Click the ✨ **Stars** button to open the chat modal
-- Select between different personality modes (e.g., Casual, Formal)
-- Messages are sent to the backend API with conversation history
-- Responses include typewriter animation for a natural feel
-- Conversation history is saved locally and auto-clears daily
-
-### Customization
-
-- **Personalities**: Add/edit in `config.umimic.ts` with custom system prompts
-- **Styling**: Components are in `components/mimic/` for easy customization
-- **Greeting**: Change the default greeting message
-- **Links**: Include your social links in the AI's knowledge base
-
-## 📦 Project Structure
-
-```
-ulinked/
-├── app/                    # Next.js app directory
-├── components/
-│   ├── app/               # Main app components
-│   ├── mimic/             # uMimic chat components
-│   ├── blog/              # Blog components
-│   └── icons/             # Icon components
-├── config/                # Configuration files
-│   ├── config.ts          # Main config
-│   ├── config.gallery.ts  # Gallery config
-│   ├── config.umimic.ts   # AI chat config
-│   └── config.blog.ts     # Blog config
-├── public/assets/         # Static assets
-└── styles/                # Global styles
-```
-
-## 🛠️ Built With
-
-- [Next.js 14](https://nextjs.org/) — React framework
-- [HeroUI](https://heroui.com/) — UI component library
-- [Tailwind CSS](https://tailwindcss.com/) — Utility-first CSS
-- [Framer Motion](https://www.framer.com/motion/) — Animation library
-- [Lanyard](https://github.com/Phineas/lanyard) — Discord activity tracking
-- [Axios](https://axios-http.com/) — HTTP client
-
-## 📝 Usage
-
-Refer to the example configuration files in the `config/` directory for sample setups and options:
-- `config/config.ts`
-- `config/config.gallery.ts`
-- `config/config.umimic.ts`
-
-This README keeps the usage section concise—open those files for a ready-to-edit example configuration.
-## screen shots
-<img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss1.png" />
-<img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss2.png" />
-<img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss3.png" />
-<img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss4.png" />
