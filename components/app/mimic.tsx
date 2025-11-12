@@ -103,8 +103,17 @@ export function UMimic(): JSX.Element {
   }, [messages]);
 
   useEffect(() => {
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
     setIsUserTyping(message.trim().length > 0);
-    scrollToBottom("smooth");
+
+    if (!isMobile) {
+      scrollToBottom("smooth");
+      return;
+    }
+
+    // on mobile, debounce scrolling while the user types (prevents keyboard jump)
+    const id = setTimeout(() => scrollToBottom("smooth"), 300);
+    return () => clearTimeout(id);
   }, [message]);
 
   useEffect(() => {
