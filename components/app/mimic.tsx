@@ -16,7 +16,7 @@ import { Chip, Input } from "@heroui/react";
 
 import config from "@/config/config";
 import { UmimicConfig } from "@/config/config.umimic";
-import { MessageBubble, TypingIndicator, BotTypingIndicator } from "./mimic/index";
+import { MessageBubble, TypingIndicator, BotTypingIndicator } from "@/components/mimic";
 
 type UmimicResponse = { reply: string };
 type ChatMessage = { from: "user" | "bot"; text: string };
