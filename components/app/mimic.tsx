@@ -1,10 +1,8 @@
 "use client";
 
-import { memo, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Stars, X } from "lucide-react";
-import { TypeAnimation } from "react-type-animation";
 import axios from "axios";
-import { motion } from "framer-motion";
 import { Button } from "@heroui/button";
 import {
   Modal,
@@ -18,36 +16,10 @@ import { Chip, Input } from "@heroui/react";
 
 import config from "@/config/config";
 import { UmimicConfig } from "@/config/config.umimic";
+import { MessageBubble, TypingIndicator, BotTypingIndicator } from "./mimic/index";
 
 type UmimicResponse = { reply: string };
 type ChatMessage = { from: "user" | "bot"; text: string };
-
-function MessageBubble({ text }: { text: string }) {
-  const [showText, setShowText] = useState(false);
-
-  useEffect(() => setShowText(false), [text]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -12 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.28 }}
-      onAnimationComplete={() => setShowText(true)}
-    >
-      <div className="rounded-2xl p-2 px-3 max-w-[80%] break-words bg-default-100 text-foreground">
-        {showText ? (
-          <TypeAnimation
-            sequence={[text]}
-            speed={98}
-            cursor={false}
-          />
-        ) : (
-          <div style={{ height: 16 }} />
-        )}
-      </div>
-    </motion.div>
-  );
-}
 
 export function UMimic(): JSX.Element {
   const {
@@ -87,9 +59,13 @@ export function UMimic(): JSX.Element {
 
   const scrollToBottom = (behavior: ScrollBehavior = "auto") => {
     try {
-      messagesEndRef.current?.scrollIntoView({ behavior, block: "end" });
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior, block: "end" });
+      }
     } catch {
-      //
+      if (messagesContainerRef.current) {
+        messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+      }
     }
   };
 
@@ -128,6 +104,7 @@ export function UMimic(): JSX.Element {
 
   useEffect(() => {
     setIsUserTyping(message.trim().length > 0);
+    scrollToBottom("smooth");
   }, [message]);
 
   useEffect(() => {
@@ -147,20 +124,11 @@ export function UMimic(): JSX.Element {
   useEffect(() => {
     if (!loading) return;
 
+    scrollToBottom("smooth");
     const timeout = setTimeout(() => scrollToBottom("smooth"), 100);
-    const interval = setInterval(() => scrollToBottom("smooth"), 100);
 
-    return () => {
-      clearTimeout(timeout);
-      clearInterval(interval);
-    };
+    return () => clearTimeout(timeout);
   }, [loading]);
-
-  useEffect(() => {
-    const interval = setInterval(() => scrollToBottom("auto"), 50);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const handleSend = async (): Promise<void> => {
     if (!message.trim()) return;
@@ -202,24 +170,6 @@ export function UMimic(): JSX.Element {
     }
   };
 
-  const TypingIndicator = memo(() => (
-    <div className="rounded-2xl p-3 bg-primary text-white flex items-center gap-2 typing-indicator-container">
-      <span className="w-2.5 h-2.5 bg-white rounded-full bounce-dot" />
-      <span className="w-2.5 h-2.5 bg-white rounded-full bounce-dot" />
-      <span className="w-2.5 h-2.5 bg-white rounded-full bounce-dot" />
-    </div>
-  ));
-  TypingIndicator.displayName = "TypingIndicator";
-
-  const BotTypingIndicator = memo(() => (
-    <div className="rounded-2xl p-3 bg-default-100 text-foreground flex items-center gap-2 typing-indicator-container">
-      <span className="w-2.5 h-2.5 bg-foreground rounded-full bounce-dot" />
-      <span className="w-2.5 h-2.5 bg-foreground rounded-full bounce-dot" />
-      <span className="w-2.5 h-2.5 bg-foreground rounded-full bounce-dot" />
-    </div>
-  ));
-  BotTypingIndicator.displayName = "BotTypingIndicator";
-
   return (
     <>
       {config.options.umimic && (
@@ -244,7 +194,7 @@ export function UMimic(): JSX.Element {
         onOpenChange={onMimicOpenChange}
         className="font-mono"
       >
-        <ModalContent className="max-h-[70dvh] min-h-[40dvh] h-auto">
+        <ModalContent className="max-h-[90dvh] min-h-[50dvh] sm:max-h-[70dvh] h-auto">
           {(onClose) => (
             <>
               <ModalHeader className="flex-col gap-2">
@@ -293,7 +243,7 @@ export function UMimic(): JSX.Element {
                           {m.text}
                         </div>
                       ) : (
-                        <MessageBubble text={m.text} />
+                        <MessageBubble text={m.text} onComplete={() => scrollToBottom("smooth")} />
                       )}
                     </div>
                   ))}
