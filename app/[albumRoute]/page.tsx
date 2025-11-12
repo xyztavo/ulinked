@@ -97,7 +97,7 @@ export default function Album() {
                                 />
                               ) : (
                                 <Image
-                                  alt={"image of " + image.title}
+                                  alt={image.title}
                                   src={image.src}
                                   width={240}
                                   height={240}
@@ -119,7 +119,7 @@ export default function Album() {
                       </ModalContent>
                     </Modal>
                     <img
-                      alt="image of the"
+                      alt={image.title}
                       className="w-52 h-52 rounded-md object-cover"
                       src={image.src}
                     />

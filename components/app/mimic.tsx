@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import config from "@/config/config";
-import { UmimicConfig } from "@/config/config.umimic";
+import { memo, useEffect, useRef, useState } from "react";
+import { Stars, X } from "lucide-react";
+import { TypeAnimation } from "react-type-animation";
+import axios from "axios";
+import { motion } from "framer-motion";
 import { Button } from "@heroui/button";
 import {
   Modal,
@@ -12,19 +14,40 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/modal";
-import { Input, Chip } from "@heroui/react";
-import axios from "axios";
-import { Stars, X } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import { Chip, Input } from "@heroui/react";
 
-type UmimicResponse = {
-  reply: string;
-};
+import config from "@/config/config";
+import { UmimicConfig } from "@/config/config.umimic";
 
-type ChatMessage = {
-  from: "user" | "bot";
-  text: string;
-};
+type UmimicResponse = { reply: string };
+type ChatMessage = { from: "user" | "bot"; text: string };
+
+function MessageBubble({ text }: { text: string }) {
+  const [showText, setShowText] = useState(false);
+
+  useEffect(() => setShowText(false), [text]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -12 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.28 }}
+      onAnimationComplete={() => setShowText(true)}
+    >
+      <div className="rounded-2xl p-2 px-3 max-w-[80%] break-words bg-default-100 text-foreground">
+        {showText ? (
+          <TypeAnimation
+            sequence={[text]}
+            speed={98}
+            cursor={false}
+          />
+        ) : (
+          <div style={{ height: 16 }} />
+        )}
+      </div>
+    </motion.div>
+  );
+}
 
 export function UMimic(): JSX.Element {
   const {
@@ -35,11 +58,13 @@ export function UMimic(): JSX.Element {
 
   const messagesContainerRef = useRef<HTMLDivElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [showPulse, setShowPulse] = useState<boolean>(true);
+  const [isUserTyping, setIsUserTyping] = useState(false);
   const [systemMessage, setSystemMessage] = useState<{ role: string; content: string }>(() => {
     if (typeof window === "undefined") return { role: "system", content: UmimicConfig.personalities?.[0]?.prompt || "" };
     const stored = localStorage.getItem("umimic_personality");
@@ -60,11 +85,17 @@ export function UMimic(): JSX.Element {
     text: UmimicConfig.greeting,
   };
 
+  const scrollToBottom = (behavior: ScrollBehavior = "auto") => {
+    try {
+      messagesEndRef.current?.scrollIntoView({ behavior, block: "end" });
+    } catch {
+      //
+    }
+  };
+
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const stored = localStorage.getItem("umimic_messages");
-
     if (stored) {
       try {
         const parsed = JSON.parse(stored) as ChatMessage[];
@@ -80,8 +111,45 @@ export function UMimic(): JSX.Element {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
     localStorage.setItem("umimic_messages", JSON.stringify(messages));
   }, [messages]);
+
+  useEffect(() => {
+    setIsUserTyping(message.trim().length > 0);
+  }, [message]);
+
+  useEffect(() => {
+    if (!isMimicOpen) return;
+
+    setShowPulse(false);
+    setTimeout(() => inputRef.current?.focus(), 80);
+    setTimeout(() => scrollToBottom("smooth"), 120);
+  }, [isMimicOpen]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => scrollToBottom("smooth"), 60);
+
+    return () => clearTimeout(timeout);
+  }, [messages]);
+
+  useEffect(() => {
+    if (!loading) return;
+
+    const timeout = setTimeout(() => scrollToBottom("smooth"), 100);
+    const interval = setInterval(() => scrollToBottom("smooth"), 100);
+
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
+  }, [loading]);
+
+  useEffect(() => {
+    const interval = setInterval(() => scrollToBottom("smooth"), 80);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSend = async (): Promise<void> => {
     if (!message.trim()) return;
@@ -96,23 +164,21 @@ export function UMimic(): JSX.Element {
     setLoading(true);
 
     try {
-        const history = [
-          ...(systemMessage ? [systemMessage] : []),
-          ...newMessages.map((m) => ({
-            role: m.from === "user" ? "user" : "assistant",
-            content: m.text,
-          }))
-        ];
+      const history = [
+        ...(systemMessage ? [systemMessage] : []),
+        ...newMessages.map((m) => ({
+          role: m.from === "user" ? "user" : "assistant",
+          content: m.text,
+        }))
+      ];
 
       const res = await axios.post<UmimicResponse>(
         `${UmimicConfig.apiBaseUrl}/api/message`,
-        {
-          message,
-          history,
-        }
+        { message, history }
       );
 
       const botReply: ChatMessage = { from: "bot", text: res.data.reply };
+
       setMessages([...newMessages, botReply]);
     } catch (err) {
       console.error(err);
@@ -125,21 +191,23 @@ export function UMimic(): JSX.Element {
     }
   };
 
-  useEffect(() => {
-    if (!messagesContainerRef.current || !messagesEndRef.current) return;
+  const TypingIndicator = memo(() => (
+    <div className="rounded-2xl p-3 bg-primary text-white flex items-center gap-2 typing-indicator-container">
+      <span className="w-2.5 h-2.5 bg-white rounded-full bounce-dot" />
+      <span className="w-2.5 h-2.5 bg-white rounded-full bounce-dot" />
+      <span className="w-2.5 h-2.5 bg-white rounded-full bounce-dot" />
+    </div>
+  ));
+  TypingIndicator.displayName = "TypingIndicator";
 
-    const timeout = setTimeout(() => {
-      const scrollBehavior = "smooth";
-      messagesEndRef.current?.scrollIntoView({
-        behavior: scrollBehavior,
-        block: "end",
-      });
-    }, 100);
-
-    return () => clearTimeout(timeout);
-  }, [messages]);
-
-  
+  const BotTypingIndicator = memo(() => (
+    <div className="rounded-2xl p-3 bg-default-100 text-foreground flex items-center gap-2 typing-indicator-container">
+      <span className="w-2.5 h-2.5 bg-foreground rounded-full bounce-dot" />
+      <span className="w-2.5 h-2.5 bg-foreground rounded-full bounce-dot" />
+      <span className="w-2.5 h-2.5 bg-foreground rounded-full bounce-dot" />
+    </div>
+  ));
+  BotTypingIndicator.displayName = "BotTypingIndicator";
 
   return (
     <>
@@ -150,7 +218,7 @@ export function UMimic(): JSX.Element {
               <span className="absolute -inset-1 rounded-full border-2 border-primary opacity-60 animate-ping pointer-events-none" />
             )}
             <Button
-              onPress={() => { setShowPulse(false); onMimicOpen(); }}
+              onPress={onMimicOpen}
               isIconOnly
               className="text-foreground hover:text-white hover:bg-primary bg-transparent shadow-custom relative z-10"
             >
@@ -207,43 +275,27 @@ export function UMimic(): JSX.Element {
                   {messages.map((m, i) => (
                     <div
                       key={i}
-                      className={`flex ${
-                        m.from === "user" ? "justify-end" : "justify-start"
-                      }`}
+                      className={`flex ${m.from === "user" ? "justify-end" : "justify-start"}`}
                     >
-                      <div
-                        className={`rounded-2xl p-2 px-3 max-w-[80%] break-words ${
-                          m.from === "user"
-                            ? "bg-primary text-white"
-                            : "bg-default-100 text-foreground"
-                        }`}
-                      >
-                        {m.from === "bot" ? (
-                          <ReactMarkdown
-                            components={{
-                              a: ({ node, ...props }) => (
-                                <a
-                                  {...props}
-                                  className="text-primary underline hover:opacity-80"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                />
-                              ),
-                            }}
-                          >
-                            {m.text}
-                          </ReactMarkdown>
-                        ) : (
-                          m.text
-                        )}
-                      </div>
+                      {m.from === "user" ? (
+                        <div className="rounded-2xl p-3 bg-primary text-white break-words">
+                          {m.text}
+                        </div>
+                      ) : (
+                        <MessageBubble text={m.text} />
+                      )}
                     </div>
                   ))}
-                  
+
+                  {isUserTyping && (
+                    <div className="flex justify-end">
+                      <TypingIndicator />
+                    </div>
+                  )}
 
                   {loading && (
-                    <div className="flex items-start text-sm text-gray-400">
-                      {config.nickname} está digitando...
+                    <div className="flex justify-start">
+                      <BotTypingIndicator />
                     </div>
                   )}
                   <div ref={messagesEndRef} />
@@ -255,8 +307,12 @@ export function UMimic(): JSX.Element {
                   placeholder="Digite algo..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
+                  ref={inputRef}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") handleSend();
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSend();
+                    }
                   }}
                 />
                 <Button isIconOnly color="danger" onPress={onClose}>
