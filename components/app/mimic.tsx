@@ -16,7 +16,11 @@ import { Chip, Input } from "@heroui/react";
 
 import config from "@/config/config";
 import { UmimicConfig } from "@/config/config.umimic";
-import { MessageBubble, TypingIndicator, BotTypingIndicator } from "@/components/mimic";
+import {
+  MessageBubble,
+  TypingIndicator,
+  BotTypingIndicator,
+} from "@/components/mimic";
 
 type UmimicResponse = { reply: string };
 type ChatMessage = { from: "user" | "bot"; text: string };
@@ -37,18 +41,29 @@ export function UMimic(): JSX.Element {
   const [loading, setLoading] = useState<boolean>(false);
   const [showPulse, setShowPulse] = useState<boolean>(true);
   const [isUserTyping, setIsUserTyping] = useState(false);
-  const [systemMessage, setSystemMessage] = useState<{ role: string; content: string }>(() => {
-    if (typeof window === "undefined") return { role: "system", content: UmimicConfig.personalities?.[0]?.prompt || "" };
+  const [systemMessage, setSystemMessage] = useState<{
+    role: string;
+    content: string;
+  }>(() => {
+    if (typeof window === "undefined")
+      return {
+        role: "system",
+        content: UmimicConfig.personalities?.[0]?.prompt || "",
+      };
     const stored = localStorage.getItem("umimic_personality");
-    return stored 
+    return stored
       ? { role: "system", content: stored }
-      : { role: "system", content: UmimicConfig.personalities?.[0]?.prompt || "" };
+      : {
+          role: "system",
+          content: UmimicConfig.personalities?.[0]?.prompt || "",
+        };
   });
   const [personalityIndex, setPersonalityIndex] = useState<number>(() => {
     if (typeof window === "undefined") return 0;
     const stored = localStorage.getItem("umimic_personality");
     if (!stored) return 0;
-    const idx = UmimicConfig.personalities?.findIndex((p) => p.prompt === stored) ?? 0;
+    const idx =
+      UmimicConfig.personalities?.findIndex((p) => p.prompt === stored) ?? 0;
     return idx >= 0 ? idx : 0;
   });
 
@@ -64,7 +79,8 @@ export function UMimic(): JSX.Element {
       }
     } catch {
       if (messagesContainerRef.current) {
-        messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+        messagesContainerRef.current.scrollTop =
+          messagesContainerRef.current.scrollHeight;
       }
     }
   };
@@ -103,17 +119,8 @@ export function UMimic(): JSX.Element {
   }, [messages]);
 
   useEffect(() => {
-    const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
     setIsUserTyping(message.trim().length > 0);
-
-    if (!isMobile) {
-      scrollToBottom("smooth");
-      return;
-    }
-
-    // on mobile, debounce scrolling while the user types (prevents keyboard jump)
-    const id = setTimeout(() => scrollToBottom("smooth"), 300);
-    return () => clearTimeout(id);
+    scrollToBottom("smooth");
   }, [message]);
 
   useEffect(() => {
@@ -157,7 +164,7 @@ export function UMimic(): JSX.Element {
         ...newMessages.map((m) => ({
           role: m.from === "user" ? "user" : "assistant",
           content: m.text,
-        }))
+        })),
       ];
 
       const res = await axios.post<UmimicResponse>(
@@ -197,13 +204,13 @@ export function UMimic(): JSX.Element {
           </div>
         </div>
       )}
-      
+
       <Modal
         isOpen={isMimicOpen}
         onOpenChange={onMimicOpenChange}
         className="font-mono"
       >
-        <ModalContent className="max-h-[90dvh] min-h-[50dvh] sm:max-h-[70dvh] h-auto">
+        <ModalContent className="max-h-[100dvh] sm:max-h-[70dvh] h-auto">
           {(onClose) => (
             <>
               <ModalHeader className="flex-col gap-2">
@@ -220,9 +227,15 @@ export function UMimic(): JSX.Element {
                         className="cursor-pointer transition-colors"
                         onClick={() => {
                           setPersonalityIndex(index);
-                          const newSystemMessage = { role: "system", content: personality.prompt };
+                          const newSystemMessage = {
+                            role: "system",
+                            content: personality.prompt,
+                          };
                           setSystemMessage(newSystemMessage);
-                          localStorage.setItem("umimic_personality", personality.prompt);
+                          localStorage.setItem(
+                            "umimic_personality",
+                            personality.prompt
+                          );
                         }}
                       >
                         {personality.name}
@@ -252,10 +265,19 @@ export function UMimic(): JSX.Element {
                           {m.text}
                         </div>
                       ) : (
-                        <MessageBubble text={m.text} onComplete={() => scrollToBottom("smooth")} />
+                        <MessageBubble
+                          text={m.text}
+                          onComplete={() => scrollToBottom("smooth")}
+                        />
                       )}
                     </div>
                   ))}
+
+                  {loading && (
+                    <div className="flex justify-start">
+                      <BotTypingIndicator />
+                    </div>
+                  )}
 
                   {isUserTyping && (
                     <div className="flex justify-end">
@@ -263,11 +285,6 @@ export function UMimic(): JSX.Element {
                     </div>
                   )}
 
-                  {loading && (
-                    <div className="flex justify-start">
-                      <BotTypingIndicator />
-                    </div>
-                  )}
                   <div ref={messagesEndRef} />
                 </div>
               </ModalBody>
