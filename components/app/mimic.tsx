@@ -95,6 +95,17 @@ export function UMimic(): JSX.Element {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    const lastClearDate = localStorage.getItem("umimic_last_clear");
+    const today = new Date().toDateString();
+
+    if (lastClearDate !== today) {
+      localStorage.removeItem("umimic_messages");
+      localStorage.setItem("umimic_last_clear", today);
+      setMessages([defaultBotMessage]);
+      return;
+    }
+
     const stored = localStorage.getItem("umimic_messages");
     if (stored) {
       try {
@@ -146,7 +157,7 @@ export function UMimic(): JSX.Element {
   }, [loading]);
 
   useEffect(() => {
-    const interval = setInterval(() => scrollToBottom("smooth"), 80);
+    const interval = setInterval(() => scrollToBottom("auto"), 50);
 
     return () => clearInterval(interval);
   }, []);
