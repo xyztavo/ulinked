@@ -261,7 +261,7 @@ export function UMimic(): JSX.Element {
                       className={`flex ${m.from === "user" ? "justify-end" : "justify-start"}`}
                     >
                       {m.from === "user" ? (
-                        <div className="rounded-2xl p-3 bg-primary text-white break-words max-w-[80%]">
+                        <div className="rounded-2xl p-2 px-3 bg-primary text-white break-words max-w-[80%]">
                           {m.text}
                         </div>
                       ) : (

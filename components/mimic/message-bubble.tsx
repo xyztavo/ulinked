@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import ReactMarkdown from "react-markdown";
 
 export function MessageBubble({ text, onComplete }: { text: string; onComplete?: () => void }) {
   const [displayed, setDisplayed] = useState("");
@@ -42,7 +43,24 @@ export function MessageBubble({ text, onComplete }: { text: string; onComplete?:
       onAnimationComplete={() => setShowBubble(true)}
     >
       <div className="rounded-2xl p-2 px-3 max-w-[80%] break-words bg-default-100 text-foreground">
-        {showBubble ? displayed || "..." : <div style={{ height: 16 }} />}
+        {showBubble ? (
+          <ReactMarkdown
+            components={{
+              a: ({ node, ...props }) => (
+                <a
+                  {...props}
+                  className="text-primary underline hover:opacity-80"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              ),
+            }}
+          >
+            {displayed || "..."}
+          </ReactMarkdown>
+        ) : (
+          <div style={{ height: 16 }} />
+        )}
       </div>
     </motion.div>
   );
