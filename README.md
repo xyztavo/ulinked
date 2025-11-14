@@ -26,7 +26,7 @@ bun install  # or npm install / yarn install
 
 Edit the main configuration file at [`config/config.ts`](./config/config.ts):
 
-```ts
+````ts
 const config: Config = {
   options: {
     blog: true,
@@ -66,38 +66,38 @@ const config: Config = {
   cd ulinked
   bun install   # or npm install / yarn install
   bun dev       # or npm run dev / yarn dev
-  ```
+````
 
-  Edit your profile and features in `config/config.ts`. See `config/` for ready examples.
+Edit your profile and features in `config/config.ts`. See `config/` for ready examples.
 
-  ## 🤖 uMimic (AI Chat)
+## 🤖 uMimic (AI Chat)
 
-  To enable uMimic, edit `config/config.umimic.ts` (set `apiBaseUrl`, `greeting`, and `personalities`) and enable `umimic` in `config/config.ts`. You also need a uMimic backend (see `xyztavo/umimic`).
+To enable uMimic, edit `config/config.umimic.ts` (set `apiBaseUrl`, `greeting`, and `personalities`) and enable `umimic` in `config/config.ts`. You also need a uMimic backend (see `xyztavo/umimic`).
 
-  How it works: the frontend sends messages and conversation history to your backend, which returns AI replies. Conversation history is stored locally and auto-clears daily.
+How it works: the frontend sends messages and conversation history to your backend, which returns AI replies. Conversation history is stored locally and auto-clears daily.
 
-  Customize personalities in `config/config.umimic.ts` and tweak UI in `components/mimic/`.
+Customize personalities in `config/config.umimic.ts` and tweak UI in `components/mimic/`.
 
-  ## 🖼️ Gallery
+## 🖼️ Gallery
 
-  The gallery supports albums with images and videos. Configure albums and media in `config/config.gallery.ts` — media are stored under `public/assets/` and rendered with a clean album layout.
+The gallery supports albums with images and videos. Configure albums and media in `config/config.gallery.ts` — media are stored under `public/assets/` and rendered with a clean album layout.
 
-  ## 📝 Blog
+## 📝 Blog
 
-  Built-in blog support uses markdown posts and simple components under `components/blog/`. Enable the blog in `config/config.ts` and add posts in the `app/` routes or the `blog` folder depending on your setup.
+Built-in blog support uses markdown posts and simple components under `components/blog/`. Enable the blog in `config/config.ts` and add posts in the `app/` routes or the `blog` folder depending on your setup.
 
-  ## Project Structure (short)
+## Project Structure (short)
 
-  `app/`, `components/`, `config/`, `public/`, `styles/` — check the `config/` folder for example files.
+`app/`, `components/`, `config/`, `public/`, `styles/` — check the `config/` folder for example files.
 
-  ## Built With
+## Built With
 
-  - Next.js 14
-  - HeroUI + Tailwind CSS
-  - Framer Motion (animations)
-  - Axios (HTTP)
+- Next.js 14
+- HeroUI + Tailwind CSS
+- Framer Motion (animations)
+- Axios (HTTP)
 
-  ## Screenshots
+## Screenshots
 
   <img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss1.png" />
   <img src="https://raw.githubusercontent.com/xyztavo/ulinked/refs/heads/main/public/assets/ss2.png" />

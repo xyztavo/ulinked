@@ -1,5 +1,4 @@
 import config from "@/config/config";
-import { LanyardData } from "@/types/lanyard-data";
 import { Button } from "@heroui/button";
 import {
   Modal,
@@ -11,7 +10,6 @@ import {
 } from "@heroui/modal";
 import { LanyardResponse } from "./linktree";
 import { Music } from "lucide-react";
-import { fontGothic } from "@/config/fonts";
 
 export function Spotify({ data }: { data?: LanyardResponse }) {
   const {
@@ -42,7 +40,11 @@ export function Spotify({ data }: { data?: LanyardResponse }) {
         </div>
       )}
       {/* spotify modal */}
-      <Modal isOpen={isSpotifyOpen} onOpenChange={onSpotifyOpenChange} className="font-mono">
+      <Modal
+        isOpen={isSpotifyOpen}
+        onOpenChange={onSpotifyOpenChange}
+        className="font-mono"
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -94,7 +96,7 @@ export function Spotify({ data }: { data?: LanyardResponse }) {
                       onClick={() =>
                         window.open(
                           `https://open.spotify.com/track/${data?.data.spotify?.track_id}`,
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >

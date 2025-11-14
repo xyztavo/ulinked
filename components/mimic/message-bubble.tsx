@@ -4,7 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 
-export function MessageBubble({ text, onComplete }: { text: string; onComplete?: () => void }) {
+export function MessageBubble({
+  text,
+  onComplete,
+}: {
+  text: string;
+  onComplete?: () => void;
+}) {
   const [displayed, setDisplayed] = useState("");
   const [showBubble, setShowBubble] = useState(false);
   const onCompleteRef = useRef(onComplete);
@@ -46,13 +52,15 @@ export function MessageBubble({ text, onComplete }: { text: string; onComplete?:
         {showBubble ? (
           <ReactMarkdown
             components={{
-              a: ({ node, ...props }) => (
+              a: ({ children, ...props }) => (
                 <a
-                  {...props}
                   className="text-primary underline hover:opacity-80"
-                  target="_blank"
                   rel="noopener noreferrer"
-                />
+                  target="_blank"
+                  {...props}
+                >
+                  {children}
+                </a>
               ),
             }}
           >

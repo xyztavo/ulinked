@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @keyframes bounce-dot {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) translateZ(0);
     opacity: 1;
   }
@@ -35,4 +36,3 @@
 .typing-indicator-container {
   contain: layout style paint;
 }
-

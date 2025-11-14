@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Blog from "@/components/blog/blog";
 import Footer from "@/components/app/footer";
 import Linktree from "@/components/app/linktree";

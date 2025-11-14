@@ -1,5 +1,5 @@
 "use client";
-import { Camera, Stars } from "lucide-react";
+import { Camera } from "lucide-react";
 import { Button } from "@heroui/button";
 import { useDisclosure } from "@heroui/modal";
 import useSWR from "swr";
@@ -8,9 +8,9 @@ import Head from "next/head";
 
 import gallery from "../../config/config.gallery";
 import config from "../../config/config";
+import { LanyardData } from "@/types/lanyard-data";
 
 import { ThemeSwitch } from "@/components/app/theme-switch";
-import { LanyardData } from "@/types/lanyard-data";
 import { AlbumsModal } from "./albums-modal";
 import SocialMedia from "./social-media";
 import { Spotify } from "./spotify";
@@ -33,12 +33,12 @@ export default function Linktree() {
     "/lanyard",
     async () => {
       const res = await axios.get(
-        "https://api.lanyard.rest/v1/users/" + config.lanyard.discordId
+        "https://api.lanyard.rest/v1/users/" + config.lanyard.discordId,
       );
 
       return res.data;
     },
-    { refreshInterval: 10000 }
+    { refreshInterval: 10000 },
   );
 
   return (
@@ -56,7 +56,7 @@ export default function Linktree() {
         {gallery.albums.map((album) =>
           album.posts.map((post) => (
             <link key={post.src} rel="preload" href={post.src} as="image" />
-          ))
+          )),
         )}
       </Head>
       <div className={"flex flex-col items-center justify-center gap-8"}>
@@ -65,10 +65,8 @@ export default function Linktree() {
         <BadgeAvatar data={data} />
         {/* Mimic, Gallery and theme switch */}
         <div className="flex flex-row gap-4 justify-center items-center">
-           {/* AI Mimic Button */}
-          {config.options.umimic && (
-            <UMimic />
-          )}
+          {/* AI Mimic Button */}
+          {config.options.umimic && <UMimic />}
           {config.options.gallery && (
             <Button
               isIconOnly

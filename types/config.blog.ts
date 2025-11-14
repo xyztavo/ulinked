@@ -1,10 +1,10 @@
 export interface BlogProps {
-    title?: string;
-    posts?: Post[];
+  title?: string;
+  posts?: Post[];
 }
 
 interface Post {
-    title: string;
-    description: string;
-    footer: string;
+  title: string;
+  description: string;
+  footer: string;
 }

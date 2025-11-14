@@ -24,7 +24,7 @@ export default function Album() {
   const params = useParams<{ albumRoute: string }>();
 
   const results = gallery.albums.filter(
-    (album) => album.route === params.albumRoute
+    (album) => album.route === params.albumRoute,
   );
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

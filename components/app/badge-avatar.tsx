@@ -23,12 +23,12 @@ export function BadgeAvatar({ data }: { data?: LanyardResponse }) {
                   <div className="flex flex-col text-white items-center justify-center text-center p-2">
                     {data.data.activities
                       .filter(
-                        (activity) =>
+                        (activity: any) =>
                           activity.name &&
                           !activity.name.includes("Spotify") &&
-                          !activity.name.includes("Custom Status")
+                          !activity.name.includes("Custom Status"),
                       )
-                      .map((activity, index) => (
+                      .map((activity: any, index: number) => (
                         <div key={index} className="mb-2">
                           <h1 className="text-center">
                             Currently on:{" "}

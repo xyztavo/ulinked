@@ -169,13 +169,14 @@ export function UMimic(): JSX.Element {
 
       const res = await axios.post<UmimicResponse>(
         `${UmimicConfig.apiBaseUrl}/api/message`,
-        { message, history }
+        { message, history },
       );
 
       const botReply: ChatMessage = { from: "bot", text: res.data.reply };
 
       setMessages([...newMessages, botReply]);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
       setMessages([
         ...newMessages,
@@ -234,7 +235,7 @@ export function UMimic(): JSX.Element {
                           setSystemMessage(newSystemMessage);
                           localStorage.setItem(
                             "umimic_personality",
-                            personality.prompt
+                            personality.prompt,
                           );
                         }}
                       >

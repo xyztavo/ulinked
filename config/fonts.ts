@@ -9,4 +9,4 @@ export const fontGothic = Didact_Gothic({
   subsets: ["latin"],
   variable: "--font-gothic",
   weight: "400",
-})
+});

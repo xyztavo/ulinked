@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import clsx from "clsx";
 
 import { Providers } from "./providers";
 
@@ -35,7 +34,7 @@ export default function RootLayout({
       <head />
       <body>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative bg-background antialiased font-mono flex flex-col min-h-screen"> 
+          <div className="relative bg-background antialiased font-mono flex flex-col min-h-screen">
             {/* Background */}
             <div className="absolute inset-0 bg-[url('/assets/static.gif')] bg-repeat opacity-5 pointer-events-none z-0" />
             {/* Main Content */}

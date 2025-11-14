@@ -8,8 +8,7 @@ const config: ConfigProps = {
   },
   nickname: "ustav",
   lanyard: {
-    active:
-      true /* if you don't wish to expose your Discord activities with lanyard, set to false */,
+    active: true /* if you don't wish to expose your Discord activities with lanyard, set to false */,
     discordId: "801073563368947742",
   },
   accentColor: "#7300ff",
