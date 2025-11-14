@@ -267,6 +267,7 @@ export function UMimic(): JSX.Element {
                         </div>
                       ) : (
                         <MessageBubble
+                          skipAnimation={i < messages.length - 1}
                           text={m.text}
                           onComplete={() => scrollToBottom("smooth")}
                         />

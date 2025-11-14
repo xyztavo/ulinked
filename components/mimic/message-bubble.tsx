@@ -7,12 +7,14 @@ import ReactMarkdown from "react-markdown";
 export function MessageBubble({
   text,
   onComplete,
+  skipAnimation = false,
 }: {
   text: string;
   onComplete?: () => void;
+  skipAnimation?: boolean;
 }) {
-  const [displayed, setDisplayed] = useState("");
-  const [showBubble, setShowBubble] = useState(false);
+  const [displayed, setDisplayed] = useState(skipAnimation ? text : "");
+  const [showBubble, setShowBubble] = useState(skipAnimation);
   const onCompleteRef = useRef(onComplete);
 
   useEffect(() => {
@@ -20,12 +22,17 @@ export function MessageBubble({
   }, [onComplete]);
 
   useEffect(() => {
+    if (skipAnimation) {
+      setDisplayed(text);
+      setShowBubble(true);
+      return;
+    }
     setDisplayed("");
     setShowBubble(false);
-  }, [text]);
+  }, [text, skipAnimation]);
 
   useEffect(() => {
-    if (!showBubble || !text) return;
+    if (!showBubble || !text || skipAnimation) return;
 
     let i = 0;
     const id = setInterval(() => {
