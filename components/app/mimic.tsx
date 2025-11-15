@@ -72,15 +72,17 @@ export function UMimic(): JSX.Element {
     text: UmimicConfig.greeting,
   };
 
-  const scrollToBottom = (behavior: ScrollBehavior = "auto") => {
+  const scrollToBottom = (behavior: ScrollBehavior = "smooth") => {
     try {
       if (messagesEndRef.current) {
         messagesEndRef.current.scrollIntoView({ behavior, block: "end" });
       }
     } catch {
       if (messagesContainerRef.current) {
-        messagesContainerRef.current.scrollTop =
-          messagesContainerRef.current.scrollHeight;
+        messagesContainerRef.current.scrollTo({
+          top: messagesContainerRef.current.scrollHeight,
+          behavior: behavior,
+        });
       }
     }
   };
