@@ -1,6 +1,7 @@
 import { UmimicConfigT } from "../types/config.umimic";
 
 const links = `
+      - [luna ai](https://lunai.monster)
       - [developer instagram](https://www.instagram.com/ustav.dev/)
       - [personal instagram](https://www.instagram.com/luna.ustav/)
       - [edits tiktok](https://www.tiktok.com/@ustav.go)
