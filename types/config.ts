@@ -21,6 +21,7 @@ export interface ConfigProps {
 interface Button {
   title: string;
   link: string;
+  special?: boolean; // Special featured button with glow effect
 }
 
 interface Lanyard {

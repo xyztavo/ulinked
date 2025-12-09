@@ -1,6 +1,7 @@
 "use client";
 import { Camera } from "lucide-react";
 import { Button } from "@heroui/button";
+import { Badge } from "@heroui/badge";
 import { useDisclosure } from "@heroui/modal";
 import useSWR from "swr";
 import axios from "axios";
@@ -83,14 +84,36 @@ export default function Linktree() {
         {/* Buttons */}
         <div className="flex flex-col gap-6">
           {config.buttons.map((button) => (
-            <Button
-              key={button.link}
-              className="text-foreground hover:text-white w-64 hover:bg-primary bg-transparent shadow-custom border border-foreground/15"
-              size="lg"
-              onPress={() => window.open(button.link, "_blank")}
-            >
-              {button.title}
-            </Button>
+            <div key={button.link} className="relative inline-flex group">
+              {button.special && (
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary via-purple-600 to-primary rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse" />
+              )}
+              {button.special ? (
+                <Badge
+                  content="R$10/mês"
+                  color="primary"
+                  placement="top-right"
+                  size="lg"
+                  className="font-bold"
+                >
+                  <Button
+                    className="relative text-foreground hover:text-white w-64 hover:bg-primary bg-transparent shadow-custom border border-foreground/15 font-semibold"
+                    size="lg"
+                    onPress={() => window.open(button.link, "_blank")}
+                  >
+                    {button.title}
+                  </Button>
+                </Badge>
+              ) : (
+                <Button
+                  className="relative text-foreground hover:text-white w-64 hover:bg-primary bg-transparent shadow-custom border border-foreground/15"
+                  size="lg"
+                  onPress={() => window.open(button.link, "_blank")}
+                >
+                  {button.title}
+                </Button>
+              )}
+            </div>
           ))}
         </div>
         {/* Social Media */}

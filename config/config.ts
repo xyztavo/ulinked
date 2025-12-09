@@ -15,8 +15,9 @@ const config: ConfigProps = {
   avatarImgSrc: "/assets/profile.png",
   buttons: [
     {
-      title: "Aulas de Golang - R$45,00",
-      link: "https://wa.me/5511993318133?text=Ol%C3%A1%2C+gostaria+de+saber+mais+sobre+as+aulas+de+Golang.",
+      title: "Luna AI - Promoção Relâmpago",
+      link: "https://lunai.monster",
+      special: true,
     },
     {
       title: "developer instagram",
