@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
 
 import { notFound, redirect } from 'next/navigation';
 
@@ -28,9 +28,15 @@ export default async function ShortLinkPage({
       if (location) {
         redirect(location);
       }
+    } else if (response.status === 200) {
+      // Assume body is { redirect: string }
+      const data = await response.json();
+      if (data.redirect) {
+        redirect(data.redirect);
+      }
     }
 
-    // If not 302 or no location, it's not found or expired
+    // If not handled, not found
     notFound();
   } catch (error) {
     notFound();
