@@ -4,7 +4,7 @@ const gallery: GalleryProps = {
   albums: [
     {
       title: "yo",
-      route: "yo",
+      route: "/albums/yo",
       coverImageSrc: "/assets/me/me-cover.png",
       posts: [
         {
