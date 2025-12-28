@@ -34,7 +34,7 @@ export default function ShortenPage() {
       });
 
       if (response.status === 201) {
-        setShortUrl(`${window.location.origin}/${finalSlug}`);
+        setShortUrl(`${window.location.origin}/l/${finalSlug}`);
       }
     } catch (err: any) {
       setError(err.response?.data?.error || 'An error occurred');
