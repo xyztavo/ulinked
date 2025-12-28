@@ -13,7 +13,7 @@ export default function ShortenPage() {
   const [slug, setSlug] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [copied, setCopied] = useState(false);
 
   const generateSlug = () => {
     return Math.random().toString(36).substring(2, 8);
@@ -42,9 +42,23 @@ export default function ShortenPage() {
     }
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(shortUrl);
-    alert('Copied to clipboard!');
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(shortUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+
+      textArea.value = shortUrl;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   return (
@@ -79,7 +93,7 @@ export default function ShortenPage() {
               <div className="flex items-center gap-2 mt-2">
                 <Input readOnly value={shortUrl} />
                 <Button color="secondary" onPress={copyToClipboard}>
-                  Copy
+                  {copied ? 'Copied!' : 'Copy'}
                 </Button>
               </div>
             </div>
