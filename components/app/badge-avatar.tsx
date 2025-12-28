@@ -1,8 +1,10 @@
-import config from "@/config/config";
-import { LanyardResponse } from "./linktree";
 import { Badge } from "@heroui/badge";
 import { Tooltip } from "@heroui/tooltip";
 import { Avatar } from "@heroui/avatar";
+
+import { LanyardResponse } from "./linktree";
+
+import config from "@/config/config";
 
 export function BadgeAvatar({ data }: { data?: LanyardResponse }) {
   return (

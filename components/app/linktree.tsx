@@ -9,14 +9,16 @@ import Head from "next/head";
 
 import gallery from "../../config/config.gallery";
 import config from "../../config/config";
-import { LanyardData } from "@/types/lanyard-data";
 
-import { ThemeSwitch } from "@/components/app/theme-switch";
+
 import { AlbumsModal } from "./albums-modal";
 import SocialMedia from "./social-media";
 import { Spotify } from "./spotify";
 import { BadgeAvatar } from "./badge-avatar";
 import { UMimic } from "./mimic";
+
+import { ThemeSwitch } from "@/components/app/theme-switch";
+import { LanyardData } from "@/types/lanyard-data";
 
 export interface LanyardResponse {
   data: LanyardData;
@@ -49,14 +51,14 @@ export default function Linktree() {
         {gallery.albums.map((album) => (
           <link
             key={album.coverImageSrc}
-            rel="preload"
-            href={album.coverImageSrc}
             as="image"
+            href={album.coverImageSrc}
+            rel="preload"
           />
         ))}
         {gallery.albums.map((album) =>
           album.posts.map((post) => (
-            <link key={post.src} rel="preload" href={post.src} as="image" />
+            <link key={post.src} as="image" href={post.src} rel="preload" />
           )),
         )}
       </Head>
@@ -90,11 +92,11 @@ export default function Linktree() {
               )}
               {button.special ? (
                 <Badge
-                  content="R$10/mês"
+                  className="font-bold"
                   color="primary"
+                  content="R$10/mês"
                   placement="top-right"
                   size="lg"
-                  className="font-bold"
                 >
                   <Button
                     className="relative text-foreground hover:text-white w-64 hover:bg-primary bg-transparent shadow-custom border border-foreground/15 font-semibold"

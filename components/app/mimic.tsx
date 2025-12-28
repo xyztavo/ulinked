@@ -51,6 +51,7 @@ export function UMimic(): JSX.Element {
         content: UmimicConfig.personalities?.[0]?.prompt || "",
       };
     const stored = localStorage.getItem("umimic_personality");
+
     return stored
       ? { role: "system", content: stored }
       : {
@@ -61,9 +62,11 @@ export function UMimic(): JSX.Element {
   const [personalityIndex, setPersonalityIndex] = useState<number>(() => {
     if (typeof window === "undefined") return 0;
     const stored = localStorage.getItem("umimic_personality");
+
     if (!stored) return 0;
     const idx =
       UmimicConfig.personalities?.findIndex((p) => p.prompt === stored) ?? 0;
+
     return idx >= 0 ? idx : 0;
   });
 
@@ -97,13 +100,16 @@ export function UMimic(): JSX.Element {
       localStorage.removeItem("umimic_messages");
       localStorage.setItem("umimic_last_clear", today);
       setMessages([defaultBotMessage]);
+
       return;
     }
 
     const stored = localStorage.getItem("umimic_messages");
+
     if (stored) {
       try {
         const parsed = JSON.parse(stored) as ChatMessage[];
+
         setMessages(parsed.length > 0 ? parsed : [defaultBotMessage]);
       } catch {
         localStorage.removeItem("umimic_messages");
@@ -198,9 +204,9 @@ export function UMimic(): JSX.Element {
               <span className="absolute -inset-1 rounded-full border-2 border-primary opacity-60 animate-ping pointer-events-none" />
             )}
             <Button
-              onPress={onMimicOpen}
               isIconOnly
               className="text-foreground hover:text-white hover:bg-primary bg-transparent shadow-custom relative z-10"
+              onPress={onMimicOpen}
             >
               <Stars />
             </Button>
@@ -209,9 +215,9 @@ export function UMimic(): JSX.Element {
       )}
 
       <Modal
+        className="font-mono"
         isOpen={isMimicOpen}
         onOpenChange={onMimicOpenChange}
-        className="font-mono"
       >
         <ModalContent className="max-h-[80dvh] sm:max-h-[70dvh] h-auto w-full max-w-md">
           {(onClose) => (
@@ -225,15 +231,16 @@ export function UMimic(): JSX.Element {
                     {UmimicConfig.personalities.map((personality, index) => (
                       <Chip
                         key={personality.name}
-                        variant={personalityIndex === index ? "solid" : "flat"}
-                        color="primary"
                         className="cursor-pointer transition-colors"
+                        color="primary"
+                        variant={personalityIndex === index ? "solid" : "flat"}
                         onClick={() => {
                           setPersonalityIndex(index);
                           const newSystemMessage = {
                             role: "system",
                             content: personality.prompt,
                           };
+
                           setSystemMessage(newSystemMessage);
                           localStorage.setItem(
                             "umimic_personality",
@@ -295,10 +302,10 @@ export function UMimic(): JSX.Element {
 
               <ModalFooter className="flex flex-row gap-2">
                 <Input
+                  ref={inputRef}
                   placeholder="Digite algo..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  ref={inputRef}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
                       e.preventDefault();

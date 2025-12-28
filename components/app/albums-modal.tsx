@@ -1,4 +1,3 @@
-import gallery from "@/config/config.gallery";
 import { Button } from "@heroui/button";
 import {
   Modal,
@@ -9,6 +8,8 @@ import {
 } from "@heroui/modal";
 import { motion } from "framer-motion";
 
+import gallery from "@/config/config.gallery";
+
 export function AlbumsModal({
   isOpen,
   onOpenChange,
@@ -17,7 +18,7 @@ export function AlbumsModal({
   onOpenChange: (isOpen: boolean) => void;
 }) {
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="font-mono">
+    <Modal className="font-mono" isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
         {(onClose) => (
           <>

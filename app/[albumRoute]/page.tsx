@@ -35,16 +35,16 @@ export default function Album() {
       <div className="flex flex-row gap-6">
         <Button
           isIconOnly
-          onPress={() => window.location.replace("/")}
           className="bg-transparent hover:bg-primary shadow-custom"
+          onPress={() => window.location.replace("/")}
         >
           <ArrowLeftCircleIcon />
         </Button>
         <ThemeSwitch />
         <Button
           isIconOnly
-          color="secondary"
           className="bg-transparent hover:bg-primary shadow-custom text-foreground"
+          color="secondary"
           onPress={onOpen}
         >
           <Camera />
@@ -97,11 +97,11 @@ export default function Album() {
                                 />
                               ) : (
                                 <Image
+                                  priority
                                   alt={image.title}
+                                  height={240}
                                   src={image.src}
                                   width={240}
-                                  height={240}
-                                  priority
                                 />
                               )}
                             </ModalBody>

@@ -25,6 +25,7 @@ export function MessageBubble({
     if (skipAnimation) {
       setDisplayed(text);
       setShowBubble(true);
+
       return;
     }
     setDisplayed("");
@@ -50,8 +51,8 @@ export function MessageBubble({
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -12 }}
       animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, x: -12 }}
       transition={{ duration: 0.28 }}
       onAnimationComplete={() => setShowBubble(true)}
     >

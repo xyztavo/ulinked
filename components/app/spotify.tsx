@@ -1,4 +1,3 @@
-import config from "@/config/config";
 import { Button } from "@heroui/button";
 import {
   Modal,
@@ -8,8 +7,11 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/modal";
-import { LanyardResponse } from "./linktree";
 import { Music } from "lucide-react";
+
+import { LanyardResponse } from "./linktree";
+
+import config from "@/config/config";
 
 export function Spotify({ data }: { data?: LanyardResponse }) {
   const {
@@ -41,9 +43,9 @@ export function Spotify({ data }: { data?: LanyardResponse }) {
       )}
       {/* spotify modal */}
       <Modal
+        className="font-mono"
         isOpen={isSpotifyOpen}
         onOpenChange={onSpotifyOpenChange}
-        className="font-mono"
       >
         <ModalContent>
           {(onClose) => (

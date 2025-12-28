@@ -8,6 +8,7 @@ export default function Page() {
   function handleCopyUrl(): void {
     try {
       const url = window.location.href;
+
       void navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
@@ -29,9 +30,9 @@ export default function Page() {
           </div>
           <div className="flex gap-2">
             <button
-              onClick={handleCopyUrl}
-              className="rounded-md border border-default-200 px-3 py-2 text-sm hover:bg-default-100"
               aria-label="Copiar URL da página"
+              className="rounded-md border border-default-200 px-3 py-2 text-sm hover:bg-default-100"
+              onClick={handleCopyUrl}
             >
               {copied ? "URL copiada" : "Copiar URL"}
             </button>
