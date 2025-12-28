@@ -18,7 +18,7 @@ export default async function ShortLinkPage({
 
   try {
     // Call backend API with redirect: 'manual' to get the redirect response
-    const response = await fetch(`${UmimicConfig.apiBaseUrl}/${slug}`, {
+    const response = await fetch(`${UmimicConfig.apiBaseUrl}/short/${slug}`, {
       redirect: 'manual',
     });
 
