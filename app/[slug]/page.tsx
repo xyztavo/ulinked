@@ -16,11 +16,17 @@ export default async function ShortLinkPage({
     redirect('https://google.com');
   }
 
+  console.log('Slug:', slug);
+
   try {
     // Call backend API with redirect: 'manual' to get the redirect response
     const response = await fetch(`${UmimicConfig.apiBaseUrl}/short/${slug}`, {
       redirect: 'manual',
     });
+
+    console.log('Response status:', response.status);
+
+    console.log('Response status:', response.status);
 
     if (response.status === 302) {
       const location = response.headers.get('location');
@@ -39,6 +45,7 @@ export default async function ShortLinkPage({
     // If not handled, not found
     notFound();
   } catch (error) {
+    console.log('Error:', error);
     notFound();
   }
 }
