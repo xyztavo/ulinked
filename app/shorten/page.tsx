@@ -13,6 +13,7 @@ export default function ShortenPage() {
   const [slug, setSlug] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
 
   const generateSlug = () => {
