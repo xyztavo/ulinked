@@ -11,6 +11,11 @@ export default async function ShortLinkPage({
 }) {
   const { slug } = params;
 
+  // Test redirect for debugging
+  if (slug === 'test') {
+    redirect('https://google.com');
+  }
+
   try {
     // Call backend API with redirect: 'manual' to get the redirect response
     const response = await fetch(`${UmimicConfig.apiBaseUrl}/${slug}`, {
