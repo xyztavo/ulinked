@@ -10,8 +10,8 @@ function RedirectPage({ url }: { url: string }) {
       <head>
         <meta httpEquiv="refresh" content={`0; url=${url}`} />
       </head>
-      <body>
-        <p>Redirecting to <a href={url}>{url}</a>...</p>
+      <body className="flex items-center justify-center min-h-screen">
+        <p>Redirecting...</p>
       </body>
     </html>
   );
@@ -53,10 +53,28 @@ export default async function ShortLinkPage({
       }
     }
 
-    // If not handled, not found
-    notFound();
+    // If not handled, display friendly message
+    return (
+      <html>
+        <head>
+          <title>Link Not Found</title>
+        </head>
+        <body className="flex items-center justify-center min-h-screen p-4 text-center">
+          <p>Hey! maybe the link expired, you can ask for whoever who generated this link to generate another one for you.</p>
+        </body>
+      </html>
+    );
   } catch (error) {
     console.log('Error:', error);
-    notFound();
+    return (
+      <html>
+        <head>
+          <title>Link Not Found</title>
+        </head>
+        <body className="flex items-center justify-center min-h-screen p-4 text-center">
+          <p>Hey! maybe the link expired, you can ask for whoever who generated this link to generate another one for you.</p>
+        </body>
+      </html>
+    );
   }
 }
