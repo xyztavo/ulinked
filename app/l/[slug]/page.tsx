@@ -1,8 +1,8 @@
 export const dynamic = 'force-dynamic';
 
-import { redirect } from 'next/navigation';
-
 import { UmimicConfig } from '@/config/config.umimic';
+import RedirectClient from './redirect-client';
+
 
 export default async function ShortLinkPage({
   params,
@@ -13,7 +13,7 @@ export default async function ShortLinkPage({
 
   // Test redirect for debugging
   if (slug === 'test') {
-    redirect('https://google.com');
+    return <RedirectClient url="https://google.com" />;
   }
 
   console.log('Slug:', slug);
@@ -30,13 +30,13 @@ export default async function ShortLinkPage({
       const location = response.headers.get('location');
 
       if (location) {
-        redirect(location);
+        return <RedirectClient url={location} />;
       }
     } else if (response.status === 200) {
       // Assume body is { redirect: string }
       const data = await response.json();
       if (data.redirect) {
-        redirect(data.redirect);
+        return <RedirectClient url={data.redirect} />;
       }
     }
 
