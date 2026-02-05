@@ -15,13 +15,8 @@ const config: ConfigProps = {
   avatarImgSrc: "/assets/profile.png",
   buttons: [
     {
-      title: "Luna AI - Lightning Promotion",
+      title: "lunai.monster (projects)",
       link: "https://lunai.monster",
-      special: true,
-    },
-    {
-      title: "Lunar Chat - AI Group Chat ",
-      link: "https://chat.lunai.monster",
     },
     {
       title: "developer instagram",
